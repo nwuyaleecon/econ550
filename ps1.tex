@@ -1,0 +1,173 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 1}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\section*{HMC Exercises (7th edition)}
+\paragraph{1.2.1(c)}
+\[ C_1 \cup C_2 = \{ (x,y) \ : \ 1 < x < 3,  1 < y < 3 \ | \ 0 < x < 1, 1 < x < 2 \}  \]
+\[ C_1 \cap C_2 = \{ (x,y) \ : \ 1 < x < 2,  1 < y < 2 \}  \]
+\paragraph{1.2.2(a)}
+\[ C^c = \{ x \ : \  0 < x \le 5/8 \} \]
+\paragraph{1.2.5(a)}
+\[ C_1 \cap (C_2 \cup C_3) = (C_1 \cap C_2) \cup (C_1 \cap C_3) \]
+For $x \in C_1 \cap (C_2 \cup C_3)$, $x \in C_1$ and either $x \in C_2$ or $x\in C_3$. Hence, $x \in C_1 \cap C_2$ or $x \in C_1 \cap C_3$, so $x \in (C_1 \cap C_2) \cup (C_1 \cap C_3)$. The statements follow in reverse, so these two sets are equal. We can also see this through the Venn diagram, as recommended.
+\paragraph{1.2.8(a)}
+\[ \lim_{k \to \infty} C_k = \{ x \ : \ 0 < x < 3 \} \]
+\paragraph{1.2.9(b)}
+\[ \lim_{k \to \infty} C_k = \emptyset \]
+For any $2 + \epsilon$, $\exists k $ such that $1/k < \epsilon$. Hence $2+\epsilon \not \in C_k$, so the limit just the empty set.
+\paragraph{1.2.10}
+\[ Q(C_1) = \frac{2}{3} + \frac{2}{9} + \frac{2}{27} + \frac{2}{81} = \frac{80}{81} \]
+\[ Q(C_2) = 1 \]
+\paragraph{1.2.12}
+\[ Q(C_1) = \int_{-1}^1 \int_{-1}^1 x^2 + y^2 \ dx  \ dy = \frac{8}{3} \]
+\[ Q(C_2) = \int_{-1}^1 2t^2 \ dt = \frac{4}{3} \]
+\paragraph{1.3.2}
+\[ P(C_1) = 1/4 \]
+\[ P(C_2) = 1/13 \]
+\[ P(C_1 \cap C_2) = 1/52 \]
+\[ P(C_1 \cup C_2) = 4/13 \]
+\paragraph{1.3.6}
+This is not a probability set function because
+\[ \int_C e^{-|x|} dx = \int_{-\infty}^\infty e^{-|x|} dx = 2 \neq 1 \]
+With a constant normalization factor of $1/2$, this will be a probability set function.
+
+\paragraph{1.3.7}
+Note that since $C_1 \setminus (C_1 \cap C_2)$ is disjoint from $C_1 \cap C_2$, by additivity, we must have
+\[ P(C_1 \setminus (C_1 \cap C_2)) + P(C_1 \cap C_2) = P(C_1) \]
+By nonnegativity,
+\[ P(C_1 \setminus (C_1 \cap C_2)) \ge 0  \]
+Hence
+\[ P(C_1) - P(C_1 \cap C_2) \ge 0\]
+\[ P(C_1 \ge P(C_1 \cap C_2)) \]
+Further, $C_2 \setminus (C_1 \cap C_2)$ is disjoint from $C_1$, so by additivity
+\[ P(C_2 \setminus (C_1 \cap C_2)) + P(C_1) = P(C_2 \cup C_1) \]
+By nonnegativity, $P(C_2 \setminus (C_1 \cap C_2)) \ge 0$, so once again, we find \[ P(C_2 \cup C_1) \ge P(C_1) \]
+Finally, by finite additivity
+\[ P(C_1) + P(C_2) = P(C_1\setminus (C_1 \cap C_2)) + P(C_1 \cap C_2)  + P(C_2 \setminus (C_1 \cap C_2)) + P(C_1 \cap C_2)\]
+\[ = P(C_1 \cup C_2) + P(C_1 \cap C_2) \]
+Since $P(C_1 \cap C_2) \ge 0$ by nonnegativity, we get
+\[ P(C_1) + P(C_2) \ge P(C_1 \cup C_2) \]
+and we are done.
+\paragraph{1.3.20}
+Take
+\[ C_k = (a - 1/k, a + 1/k) \]
+for $k$ large enough that this is a subinterval of $(0,1)$. This is possible because $(0,1)$ is open, and hence we can always find some neighborhood of $a$ contained in $(0,1)$. Now, we have that
+\[ \lim_{k\to \infty} C_k = \{ a \} \]
+Using expression (1.3.8), we get
+\[ P(\{ a \}) = \lim_{k \to \infty} P(C_k) = \lim_{k \to \infty}\frac{1}{2k} = 0 \]
+\paragraph{1.3.22}
+Consider any $A \in \mathcal{B}$. Then by definition $A \in \mathcal{E} \supset \mathcal{D}$ for all $\sigma$-fields $\mathcal{E}$. But since $\mathcal{E}$ is a $\sigma$-field, $A^c \in \mathcal{E}$ for all $\mathcal{E}$. Then, by definition of $\mathcal{B}$, $A^c \in \mathcal{B}$. Hence $\mathcal{B}$ is closed under complements.
+
+Now, we just have to show closure under countable union. Suppose $A_1, A_2, ... \in \mathcal{B}$. Then $A_i \in \mathcal{E} \supset \mathcal{D}$ for all $\sigma$-fields $\mathcal{E}$. Since $\mathcal{E}$ are $\sigma$-fields, they are all closed under countable union, and hence $\cup A_i \in \mathcal{E}$ for all $\sigma$-fields $\mathcal{E} \supset \mathcal{D}$. Thus, by definition of $\mathcal{B}$, $\cup A_i \in \mathcal{B}$. Hence $\mathcal{B}$ is closed under countable union, and hence $\mathcal{B}$ is a $\sigma$-field.
+\paragraph{1.3.23}
+Note $(b, \infty) \in \mathcal{B}_0$, so by closure under complements, $(-\infty, b]$. Hence, for $b > a$, by closure under union, since $(-\infty, b] \in \mathcal{B}_0$ and $[a, \infty) \in \mathcal{B}_0$, we must have $[a, b] \in \mathcal{B}_0$. Hence, $\mathcal{B}_0$ contains all the closed intervals as well.
+
+Since $\mathcal{B}_0$ contains all closed intervals, $[a,a] = \{ a\} \in \mathcal{B}_0$. Hence, if $b < a$, since $(b, a) \in \mathcal{B}_0$, we have $(b,a) \cup [a,a] = (b, a] \in \mathcal{B}_0$. Similarly, if $a < b$, then since  $(a, b) \in \mathcal{B}_0$, we have $(a, b) \cup [a,a] = [a, b) \in \mathcal{B}_0$. Thus, $\mathcal{B}_0$ contains all the half-open intervals as well.
+
+\section*{Problem 1}
+A $\sigma$-field must be closed under complements and countable unions. Hence, we can take the following procedure to enumerate the sets in the $\sigma$-field generated by $F = \{ A, B, C \}$:
+\begin{enumerate}
+\item Add all complements of sets in $F$ to $F$.
+\item Add unions of every subset of sets in $F$ to $F$.
+\item Repeat 1 and 2 until no more new sets are added to $F$.
+\end{enumerate}
+It is very clear that the resulting $F$ is closed under complements; since step 1 in the procedure ensures that for any $S \in F$, $S^c \in F$.
+
+We claim that $F$ is finite. To show this, consider the function $ f:\Omega \to \{ 0,1 \}^3 $ defined by \[ f(\omega) = (\mathbbm{1}_{\omega \in A}, \mathbbm{1}_{\omega \in B}, \mathbbm{1}_{\omega \in C} )\] where $\mathbbm{1}_{\omega \in S}$ is 1 if $\omega \in S$ and 0 otherwise. We first argue that every set in $F$ is the union of preimages of $f$, or $\cup_i f^{-1}(v_i)$ where $v_i \in \{0,1\}^3$.
+
+We first note that if \[ S_1 = \bigcup_{v \in T_1} f^{-1}(v) \] and \[ S_2 = \bigcup_{v \in T_2} f^{-1}(v)\]then \[ S_1 \cup S_2 = \bigcup_{v \in T_1\cup T_2} f^{-1}(v)\] Further, we note that if \[ S = \bigcup_{v \in T} f^{-1}(v)\]then \[S^c = \bigcup_{v \in T^c} f^{-1}(v)\]
+Hence, we have shown that unions of preimages of $f$ are closed under unions and complements. We also know that
+\[ A = \bigcup_{(i,j) \in \{0, 1\}^2} f^{-1}(\{1, i, j\} ) \]
+
+\[ B = \bigcup_{(i,j) \in \{0, 1\}^2} f^{-1}(\{i, 1, j\} ) \]
+
+\[ C = \bigcup_{(i,j) \in \{0, 1\}^2} f^{-1}(\{i, j, 1\} ) \]
+
+Hence, by our generation of $F$, we know that every element of $F$ must be a union of preimages of $f$. Since there are $2^3 = 8$ preimages, $F$ can have at most $2^8 = 256$ different elements. Hence, since the generation can produce at most a finite number of sets, we only have to show closure of $F$ under finite union. But closure under finite union follows immediately from our generation process; by step 2, we ensure that every finite union of sets in $F$ is in $F$. Hence, we prove that our method will terminate and produces the $\sigma$-field generated by $A, B, C$.
+
+\section*{Problem 2}
+
+\paragraph{(a)}
+Define
+\[ A_i = \left( \frac{1}{2^i}, \frac{1}{2^{i-1}} \right] \]
+Note that all of the $A_i$ are disjoint with each other, and their union $\cup_{i=1}^\infty A_i$ is $(0,1]$.
+
+\paragraph{(b)} To show this is a field, we show this is closed under complements and finite unions.
+
+We first show closure under complements. Consider $A = \cup_{j=1}^J (a_j, b_j]$, where $0 \le a_1 \le b_1 \le a_2 ... \le b_J \le 1$. If we define $b_0 = 0$, $a_{j+1} = 1$. Let us define $b_0 = 0$ and $a_{J+1} = 1$. Then we have that
+\[ A^c = \cup_{j=1}^{J+1} (b_{j-1}, a_j] \] Note that we may have some $b_{i-1} = a_i$ for some $i$, in which case we say the interval is simply the null set (which doesn't affect the union). But we can clearly see that $A^c$ is also a union of disjoint half-open half-closed subintervals, and hence $A^c \in \mathcal{F}_0$
+
+Now, we show closure under finite union. By definition $\mathcal{F}_0$ contains all finite unions of disjoint half-open half-closed subintervals of $(0,1]$. We first show that a union of two non-disjoint half-closed subintervals is a half-open half-closed subinterval. WLOG, let the intervals be $(a_1, b_1]$ and $(a_2, b_2]$, and WLOG suppose $a_1 < b_1$, $a_2 < b_2$. Since these are nondisjoint, $a_2 \le b_1$. But the union of these two is then given by $(a_1, b_2]$. Now, for any finite union of sets $A_1, A_2 ... A_n \in \mathcal{F}_0$, we note that the union $\cup A_i$ is a finite number of potentially non-disjoint half-open half-closed intervals. However, by the statement we just showed, we can repeatedly union pairs of non-disjoint intervals together into single half-open half-closed intervals until we are left with a set of disjoint half-open half-closed intervals. Since there are only a finite number of potentially non-disjoint half-open half-closed intervals we need to union, we will be left with a finite number of disjoint half-open half-closed intervals. Hence the union $\cup A_i \in \mathcal{F}_0$, so we have shown $\mathcal{F}_0$ is a field.
+\paragraph{(c)}
+We show that the measure $\mu$ satisfies the three axioms.
+
+First, we show that the measure is always nonnegative. Consider $\mu(A)$, where $A = \cup_{j=1}^J (a_j, b_j]$. By definition,
+$b_i > a_i$ $\forall i$. Thus, \[ \mu(A) = \sum_{j=1}^J (b_j - a_j) \ge 0 \]
+
+Second, we show that $\mu(\Omega) = 1$. But this follows by definition:
+\[ \mu(\Omega) = \mu((0,1]) = 1-0 = 1 \]
+
+Last, we show the countable additivity property of $\mu$ on $\mathcal{F}_0$. Let $A_1, A_2, ...$ be a countable sequence of disjoint sets in $\mathcal{F}_0$, such that $\cup_{i=1}^\infty A_i \in \mathcal{F}_0$. Each $A_i$ is a finite union of disjoint half-open half-closed intervals $\cup_{j=1}^J (a_{ij}, b_{ij}]$, so since all the $A_i$ are disjoint by assumption, every $(a_{ij}, b_{ij}]$ is disjoint from $(a_{i'j'}, b_{i'j'}]$, where at least one of $i\neq i'$ and $j \neq j'$ is true. We have
+\[ \cup_{i=1}^\infty A_i = \cup_{i=1}^\infty\cup_{j=1}^{J_i} (a_{ij}, b_{ij}] \]
+Since a countable union of finite unions is also countable, and we argued that every pair of intervals is disjoint, we can invoke the suggested assumption of countable additivity of $\mu$ on intervals to obtain:
+\[ \mu\left(\cup_{i=1}^\infty A_i\right) = \mu\left(\cup_{i=1}^\infty\cup_{j=1}^{J_i} (a_{ij}, b_{ij}] \right) \]
+\[ = \cup_{i=1}^\infty\cup_{j=1}^{J_i} \mu((a_{ij}, b_{ij}])\]
+\[ = \cup_{i=1}^\infty\cup_{j=1}^{J_i} (b_{ij} - a_{ij}) \]
+\[ = \cup_{i=1}^\infty \mu(A_i) \]
+as desired. Hence we have shown $\mu$ satisfies the three axioms of probability.
+\section*{Problem 3}
+To show this is a $\sigma$-field, we show that it is closed under complements and is closed under countable union. These together imply that $\Omega \in F$, since for any $A \in F$, $A^c \in F$ and hence $A \cup A^c = \Omega \in F$.
+
+To show closure under complement, we consider some arbitrary subset $C$ of $\Omega \in F$. By definition, this is generated by some $B \in \mathcal{B}(\Omega_X)$, such that
+\[C = \{ \omega \in \Omega \ : \ X(\omega) \in B \} \]
+Since $\mathcal{B}(\Omega_X)$ is a $\sigma$-field, $B^c \in \mathcal{B}(\Omega_X)$. We claim
+\[C' = \{ \omega \in \Omega \ : \ X(\omega) \in B^c \} \]
+is the complement of $C$. For any arbitrary $\omega \not \in C$, $X(\omega) \not \in B$, implying $X(\omega) \in B^c$ and hence $\omega \in C'$. Therefore $C^c \subseteq C'$. Further, for any $\omega \in C'$, $X(\omega) \in B^c$ and hence $X(\omega) \not \in B$, so $\omega \not \in C$.
+So $C' \subseteq C^c$, and hence $C' = C^c \in F$. So $F$ is closed under complements.
+\\\\
+Now, we show closure under countable unions. Suppose sets $C_1, C_2, ... \in F$, and let their respective sets $B_i$ be such that
+\[C_i = \{ \omega \in \Omega \ : \ X(\omega) \in B_i \} \]
+Then let $B^* = \cup B_i$, and define
+\[ C^* = \{ \omega \in \Omega \ : \ X(\omega) \in B^* \} \]
+We claim $C^* = \cup C_i$. First, consider $\omega \in C^*$. Then $X(\omega) \in B^*$, by definition of $C^*$. So $X(\omega) \in B_k$ for some $k$, since $B^* = \cup B_i$. Hence $\omega \in C_k$, so $\omega \in \cup C_i$. Therefore, $C^* \subseteq \cup C_i$.
+
+Now, suppose $\omega \in \cup C_i$. Then $\omega \in C_k$ for some $k$. This implies $X(\omega) \in B_k$, so $X(\omega) \in B^*$. Hence $\omega \in C^*$. Therefore $\cup C_i \subseteq C^*$.
+
+Together, these two imply $C^* = \cup C_i \in F$. Therefore, $F$ is closed under countable union and complements, so by our earlier argument, $\Omega \in F$, and so this is a $\sigma$-field.
+
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
