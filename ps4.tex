@@ -1,0 +1,203 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 4}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\section*{HMC Exercises (7th edition)}
+\paragraph{2.1.1}
+\[ P(0 < X_1 < 1/2, \ 1/4 < X_2 < 1) = \int_0^{1/2} \int_{1/4}^1 4x_1x_2 = \frac{1}{4} \left( 1 - \frac{1}{16}\right) = \frac{15}{64}  \]
+\[ P(X_1 = X_2) = 0 \]
+\[ P(X_1 < X_2) = \int_0^1 \int_{0}^{x_2} 4x_1 x_2 \ dx_1 \ dx_2 = \int_0^1 2x_2 ( x_2^2) = \frac{2}{4} = 1/2 \]
+\[ P(X_1 \le X_2) = 1/2 \]
+\paragraph{2.1.6}
+\[ P(Z \le 0) = 0 \]
+\[ P(Z \le 6) = \int_0^6 \int_0^{6 - x} e^{-x-y} \ dy \ dx = \int_0^6 \left(e^{-x} - e^{-6} \right) dy =  1 - e^{-6} - 6e^{-6} \approx 0.9826  \]
+\[ F_Z(t) = \int_0^t \int_0^{t-x} e^{-x-y} \ dy \ dx = \int_0^t e^{-x} - e^{-t} \ dx = 1 - e^{-t} - te^{-t} \]
+\[ f_Z(t) = te^{-t} \]
+where $t \ge 0$.
+\paragraph{2.1.10}
+Marginal distribution:
+\[ f_{X_1}(x_1) = \int_{x_1}^1 15x_1^2 x_2 \ dx_2 = \frac{15}{2} x_1^2 (1 - x_1^2) \]
+\[ f_{X_2}(x_2) = \int_{0}^{x_2} 15x_1^2 x_2 \ dx_1 = 5x_2^4 \]
+\[ P(X_1 + X_2 \le 1) = \int_{0}^{1/2} \int_{x_1}^{1-x_1} 15x_1^2 x_2 \ dx_2 \ dx_1 = \int_{0}^{1/2} (15/2)x_1^2 (1-2x_1) \ dx_1 = (5/16) - (15/64) = 5/64 \]
+\paragraph{2.1.16}
+\[ P(2X + 3Y < 1) = \int_0^{1/2} \int_{0}^{(1-2x)/3} 6(1-x-y) \ dy \ dx = \int_0^{1/2} 6\left(\frac{(1-x)(1-2x)}{3} - \frac{(1-2x)^2}{18} \right) \]
+\[ = \frac{1}{3} \int_0^{1/2} (5-14x + 8x^2) = \frac{1}{3}( (5/2) - (7/4) + (1/3)) = 13/36  \]
+\paragraph{2.3.1}
+Conditional mean:
+\[ E[X_2 | X_1 = x_1] = \int_0^1 x_2 \frac{x_1 + x_2}{\frac{1}{2} + x_1} \ dx_2 = \frac{x_1/2 + 1/3}{\frac{1}{2} + x_1} = \frac{3x_1 + 2}{6x_1 + 3} \]
+Conditional variance:
+\[ E[X_2^2 | X_1 = x_1] = \int_0^1 x_2^2 \frac{x_1 + x_2}{\frac{1}{2} + x_1} = \frac{x_1/3 + 1/4}{x_1 + 1/2} = \frac{4x_1 + 3}{12x_1 + 6} \]
+\[ E[X_2^2 | X_1 = x_1] - (E[X_2 | X_1 = x_1])^2 = \frac{4x_1 + 3}{12x_1 + 6} - \left(\frac{3x_1 + 2}{6x_1 + 3}\right)^2 \]
+\[= \frac{(4x_1 + 3)(2x_1 + 1)}{6(2x_1 + 1)^2} - \frac{(3x_1 + 2)(3x_1 + 2)}{9(2x_1 + 1)^2} = \frac{6x_1^2 + 6x_1 + 1}{18(2x_1+1)^2} \]
+\paragraph{2.3.2a, b}
+To determine $c_1$ and $c_2$, we need normalization to 1. For $c_1$, we get
+\[ \int_0^{x_2} c_1x_1/x_2^2 \ dx_1 = 1  \]
+So we need $c_1 = 2$. Likewise, we get that $c_2 = 5$.
+Then the joint pdf is
+\[ f(x_1, x_2) = f_{1|2}(x_1|x_2)f_2(x_2) = 10x_1x_2^2 \]
+\[ 0 < x_1 < x_2 < 1 \]
+\paragraph{2.3.10}
+The marginal probability function of $x_1$:
+\[ p_1(0) = 4/18 \]
+\[ p_1(1) = 7/18 \]
+\[ p_1(2) = 7/18 \]
+The marginal probability function of $x_2$:
+\[ p_2(0) = 11/18 \]
+\[ p_2(1) = 7/18 \]
+The conditional means are:
+\[ E[X_1|X_2 = 0] = 16/11 \]
+\[ E[X_1|X_2 = 1] = 5/7 \]
+\[ E[X_2|X_1 = 0] = 3/4 \]
+\[ E[X_2|X_1 = 1] = 3/7 \]
+\[ E[X_2|X_1 = 2] = 1/7 \]
+\paragraph{2.4.1a}
+\[ \frac{Cov(X,Y)}{\sqrt{V(X)V(Y)}} = \frac{(2/3)}{(2/3)} = 1 \]
+\paragraph{2.4.6}
+\[ E[Y|x] = \int_{-x}^x \frac{y}{2x} = \frac{(1/2)x^2 - (1/2)(-x)^2}{2x} = 0 \]
+and hence this is a straight line.
+\paragraph{2.4.11}
+Consider $Y = X_1 + X_2$. Then by linearity of expectation, $E[Y] = \mu_1 + \mu_2$. Also
+\[ E[Y^2] = E[X_1^2 + 2X_1X_2 + X_2^2] = E[X_1]^2 + E[X_2]^2 + 2E[X_1X_2] \]
+\[ V[Y] = E[Y^2] - E[Y]^2 = E[X_1]^2 + E[X_2]^2 + 2E[X_1X_2] - (\mu_1 + \mu_2)^2\]
+ \[ = E[X_1]^2 + E[X_2]^2 + 2E[X_1X_2] - \mu_1^2 - \mu_2^2 - 2\mu_1\mu_2 \]
+ \[ = \sigma^2 + \sigma^2 + 2Cov(X_1, X_2)\]
+  \[ = 2\sigma^2 + 2Cov(X_1, X_2)\]
+  \[ = 2\sigma^2(1 + \rho) \]
+  Then by Chebyshev, we have
+  \[ P(|Y - \mu_1 - \mu_2| \ge k\sigma) \le \frac{2\sigma^2(1 + \rho)}{(k\sigma)^2} = \frac{2(1+\rho)}{k^2} \]
+\paragraph{2.5.2}
+Can't be independent because the support is non-rectangular, as we argued in class. Since $x_1 < x_2$, we have dependence.
+\paragraph{2.5.5}
+The desired probability is 5
+\[ \frac{2}{3} + \frac{5}{8} - \frac{5}{12} = \frac{7}{8} \]
+\paragraph{2.5.8}
+These are not independent, the support isn't a rectangle.
+\[ E(X|y) = \int_y^1 \frac{3x^2}{(3/2)(1-y^2)} \frac{2}{3} \]
+\paragraph{2.5.11}
+Let $X_1$ be the first midpoint, $X_2$ the second. Then
+\[ P(X_1 > X_2 + 1) = P(X_1 - X_2 > 1) = \int_7^14 \int_6^{x-1} \frac{1}{196} \ dy \ dx =\frac{1}{8}  \]
+\[ P(X_2 > X_1 + 1) = P(X_2 - X_1 > 1) = \int_6^20 \int_{0}^{y-1} \frac{1}{196} \ dy \ dx = \frac{311}{392} \]
+\[ 1 - (P(X_1 > X_2 + 1) + P(X_2 > X_1 + 1)) = \frac{4}{49} \]
+\paragraph{2.8.1}
+\[ (n-1)^{-1} \sum_{i=1}^n(X_i - \bar{X})^2 = (n-1)^{-1} \sum_{i=1}^nX_i^2 - 2\bar{X}X_i + \bar{X}^2 \]
+\[ = (n-1)^{-1}\left(  \sum_{i=1}^nX_i^2 - \sum_{i=1}^n2\bar{X}X_i + \sum_{i=1}^n \bar{X}^2  \right) \]
+\[ = (n-1)^{-1}\left(  \sum_{i=1}^nX_i^2 -2\bar{X} \sum_{i=1}^nX_i + n\bar{X}^2  \right) \]
+\[ = (n-1)^{-1}\left(  \sum_{i=1}^nX_i^2 -2n\bar{X}^2 + n\bar{X}^2  \right) \]
+\[ = (n-1)^{-1}\left(  \sum_{i=1}^nX_i^2 -n\bar{X}^2   \right) \]
+\paragraph{2.8.4}
+\[ E[X_1X_2] = \mu_1\mu_2 + Cov(X_1, X_2) = \mu_1\mu_2 \]
+\[ V(X_1X_2) = E[X_1^2X_2^2] - \mu_1^2\mu_2^2 = E[X_1]^2 E[X_2]^2 - \mu_1^2 \mu_2^2\]
+\[ = (\sigma_1^2 + \mu_1^2)(\sigma_2^2 + \mu_2^2) - \mu_1^2 \mu_2^2 \]
+\[ = \sigma_1^2\sigma_2^2 + \mu_1^2\sigma_2^2 + \mu_2^2\sigma_1^2 \]
+\paragraph{2.8.10}
+\[V(X+2Y) = Cov(X+2Y, X+2Y) = Var(X) + 4Var(Y) + 4Cov(X, Y) = 15 \]
+\[ Cov(X,Y) = 3/4 \]
+\[ \rho = Cov(X,Y) / \sqrt(V(X)V(Y)) = \frac{3}{8\sqrt{2}}\]
+\paragraph{2.8.16}
+\[V\left( \sum X_i \right) = \sum V(X_i) + \sum_i\sum_{j\neq i} Cov(X_i, X_j) = 10\cdot(5) + 90\cdot(0.5) = 50 + 45 = 95 \]
+\paragraph{2.8.18}
+Consider $f(x) = \sqrt{x}$. By concavity and Jensen's inequality,
+\[ E[f(S^2)] < f(E[S^2]) \]
+\[ E[S] < f(\sigma^2) = \sigma \]
+as desired.
+\paragraph{2.6.1a}
+\[ f_X(x) = \frac{2x + 2}{3} \]
+\[ f_Y(y) = \frac{2y + 2}{3} \]
+\[ f_Z(z) = \frac{2z + 2}{3} \]
+\paragraph{2.6.1b}
+\[ P(0 < X,Y,Z < 1/2) = \int_0^{1/2}\int_0^{1/2}\int_0^{1/2} \frac{2x + 2y + 2z}{3} = \int_0^{1/2}\int_0^{1/2} \frac{1}{12} + \frac{y + z}{3} = \int_0^{1/2} \frac{1}{24} + \frac{1}{24} + \frac{z}{6} = \frac{1}{24} + \frac{1}{48} = \frac{1}{16} \]
+\[ P(0 < X < 1/2) = P(0 < Y < 1/2) = P(0 < Z < 1/2) = \int_0^{1/2} \frac{2x + 2}{3} = \frac{1}{12} +\frac{1}{3} = \frac{5}{12} \]
+\paragraph{2.6.1c}
+No. We can verify using part b that $P(A \cap B \cap C) \neq P(A)P(B)P(C)$
+\paragraph{2.6.1e}
+The joint cdf is
+\[ \int\int\int f(x,y,z) = \frac{x^2 + y^2 + z^2}{3}\]
+The marginal cdfs are given by
+\[ F_X(x) = \frac{x^2 + 2x}{3} \]
+\[ F_Y(y) = \frac{y^2 + 2y}{3} \]
+\[ F_Z(z) = \frac{z^2 + 2z}{3} \]
+\paragraph{2.6.1f}
+Conditional distribution:
+\[ f_{X,Y|Z} = \frac{f(x,y,z)}{f_Z(z)} = \frac{2x + 2y + 2z}{2z + 2} = \frac{x+y+z}{z+1} \]
+\[ E[X + Y |Z = z ] = \int \int (x+y)\frac{x + y + z}{z + 1} \]
+\[ = \frac{1}{z + 1} \int \int x^2 + x(y + z) + xy + y^2 + yz = \frac{1}{z+1}\int \frac{1}{3} + y + (z/2) + y^2 + yz \]
+\[ = \frac{1}{z+1} \left(\frac{1}{3} + \frac{1}{2} + z + \frac{1}{3} \right) \]
+\[ = \frac{6z + 7}{6z + 6}\]
+\paragraph{3.3.2}
+The PDF is given by:
+\[ f(x) = \frac{x^{3/2}e^{-x/2}}{3\sqrt{2\pi}} \]
+By numerically bashing or consulting a table, we get that $c = 0.831$, $d = 12.833$
+\paragraph{3.4.2}
+\[ P(X < 60) = P((X-75)/10 < 1.5) =0.0668 \]
+\[ P(70 < X < 100) = P( -0.5 < (X-75)/10 < 2.5) = 0.6853 \]
+\paragraph{3.4.3}
+We can take $b \approx 1.645$.
+\paragraph{3.4.18}
+Skewness:
+\[ \frac{E[(X-\mu)^3]}{\sigma^3} = E\left[\left( \frac{X-\mu}{\sigma} \right)^3 \right] = \int \frac{x^3e^{-x^2/2}}{\sqrt{2\pi}} = 0 \]
+Kurtosis
+\[ \frac{E[(X-\mu)^4]}{\sigma^4} = \int \frac{x^4e^{-x^2/2}}{\sqrt{2\pi}} = 3 \]
+\paragraph{3.5.8}
+We rewrite
+\[ f(x,y) = \frac{1}{2\pi} \left( \exp \left(-\frac{1}{2}(x^2+y^2)\right) + xy\exp \left(-(x^2+y^2-1)\right) \right) \]
+Note that when we integrate through the domain of only $x$ or only $y$, the second term disappears due to symmetry about 0, and we will be left with
+\[ f_X(x) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{x^2}{2} \right) \]
+\[ f_Y(y) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{y^2}{2} \right) \]
+Hence the marginal distributions are normal. However, the pdf is still joint, as the distribution depends on both $x,y$ and characterizes the realization on $X,Y$.
+\paragraph{3.5.10}
+By HMC Theorem 3.5.1, we have that
+\[ \mu_Z = a\mu_X + b\mu_Y = 0 \]
+\[ \sigma^2_Z = a^2 \sigma_X^2 + 2ab \rho \sigma_X \sigma_Y  + b^2 \sigma_Y^2= a^2 + b^2 + 2ab\rho \]
+Then $Z$ is distributed as $N(\mu_Z, \sigma^2_Z)$.
+\paragraph{3.5.15}
+Take $a = [ 1/n, 1/n, 1/n, ...]$. Then by Theorem 3.5.1, we have the distribution of $\bar{X}$ is given by $N(a \mu, a \Sigma a')$. If all of its components have the same mean $\mu$, then the distribution is then $N(\mu, a\Sigma a')$.
+\section*{Problem 1}
+We know that
+\[ V(AX + b) = E[(AX+b) - E[AX+b])(AX+b) - E[AX+b])' ]\]
+\[ = E[(AX - AE[X])(AX - AE[X])'] \]
+\[ = E[A(X-E[X])(X-E[X])'A'] \]
+\[ = AE[(X-E[X])(X-E[X])']A' \]
+\[ = AV(X)A' \]
+\section*{Problem 2}
+\[ Cov(AX + BY, CZ+DW) = E[(AX + BY - E[AX+BY])(CZ + DW - E[CZ+DW])'] \]
+\[ = E[(AX + BY - AE[X]-BE[Y])(CZ + DW - CE[Z]-DE[W])'] \]
+\[ = E[(A(X-E[X]) + B(Y -E[Y]))(C(Z-E[Z]) + D(W-E[W]))'] \]
+\[ = E[A(X-E[X])(Z-E[Z])'C' + B(Y -E[Y])(Z-E[Z])'C' + A(X-E[X])(W-E[W]))'D' + B(Y -E[Y])(W-E[W]))'D'] \]
+\[ = AE[(X-E[X])(Z-E[Z])']C' + BE[(Y -E[Y])(Z-E[Z])']C' \]\[+ AE[(X-E[X])(W-E[W]))']D' + BE[(Y -E[Y])(W-E[W]))']D'\]
+\[ = A Cov(X,Z) C' + B Cov(Y,Z)C' + A Cov(X,W)D' + BCov(Y,W)D' \]
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
