@@ -1,0 +1,125 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 5}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\section*{HMC Exercises (7th edition)}
+\paragraph{5.1.1}
+Suppose $a_n \to_p a$. Then we have
+\[ Pr(|a_n - a| \ge \epsilon) \to 0 \]
+as $n\to \infty$. But since $a_n$ is deterministic,
+\[ Pr(|a_n - a| \ge \epsilon)  = 1(|a_n - a| \ge \epsilon) \]
+Since this goes to $0$, there exists some $N$ such that for all $n > N$, $|a_n - a| < \epsilon$, and hence $a_n \to a$.
+
+Now, for the reverse implication, suppose $a_n \to a$. Then for any $\epsilon$, $\exists N$ such that $\forall n > N$, $|a_n - a| < \epsilon$. That implies that $Pr(|a_n - a| \ge \epsilon) = 0$ for all $n > N$, and hence $a_n \to_p a$.
+
+\paragraph{5.1.2}
+\begin{enumerate}[label=(\alph*)]
+\item Note that since we know $Y_n = \sum_{i=1}^N X_i$ for $X_i$ independent Bernoulli random variables. Then we have by the WLLN,
+\[ Y_n / n = \bar{X}_n \to_p \mu_X = p \]
+\item This follows immediately from Rules 1 and 2. Since $1 \to_p 1$, $-Y_n/n \to_p -p$, we have $1-Y_n/n \to_p 1-p$.
+\item From parts a and b, we know
+\[ 1 - Y_n/n \to_p 1-p \]
+\[ Y_n /n \to_p p \]
+Therefore, by Rule 3,
+\[ (Y_n /n) (1 - Y_n/n) \to_p p(1-p) \]
+\end{enumerate}
+
+\section*{Problem 2} Since $\Sigma$ is positive definite, it is diagonalizable as $B \Gamma B'$, where $B B' = I$. Then using multiplicativity of the determinant :
+\[ (\det (\Sigma))^{-1/2} = (\det (B \Gamma B'))^{-1/2} \]
+\[ = (\det(B) \det( \Gamma) \det(B'))^{-1/2} \]
+\[ = (\det(B) \det( \Gamma) \det(B'))^{-1/2} \]
+Note that since $B B' = I$, $\det(B) \det(B') = \det(I) = 1$. Hence:
+\[ (\det (\Sigma))^{-1/2}= (\det(B) \det( \Gamma) \det(B'))^{-1/2} \]
+\[ = (\det( \Gamma))^{-1/2} \]
+\[ = \det(B) (\det( \Gamma))^{-1/2} \det(B') \]
+Now, since $\Gamma$ is diagonal, $\det(\Gamma)^{-1/2} = \det(\Gamma^{-1/2})$. So
+\[ (\det (\Sigma))^{-1/2} = \det(B) (\det( \Gamma))^{-1/2} \det(B') \]
+\[ = \det(B)\det(\Gamma^{-1/2})\det(B') \]
+\[ = \det(B\Gamma^{-1/2}B' ) = \det(\Sigma^{-1/2}) \]
+\section*{Problem 3}
+Let
+\[ \bar{\mu}_n = n^{-1} \sum_{i=1}^n E(X_i) \]
+Then we have, from Markov,
+\[ P(|\bar{X}_n - \bar{\mu}_n| > \epsilon) = P((\bar{X}_n - \bar{\mu}_n)^2 > \epsilon^2) \]
+\[ \le \frac{E(\bar{X}_n - \bar{\mu}_n)^2}{\epsilon^2} \]
+\[ = \frac{\sum_i \sum_j E((X_i - \mu_i)(X_j - \mu_j))}{n^2\epsilon^2 } \]
+\[ = \frac{\sum_{i=1}^n \sum_{j=1}^n Cov(X_i, X_j)}{n^2\epsilon^2 } \]
+\[ = \frac{(1/n)\sum_{i=1}^n \sum_{j=1}^n Cov(X_i, X_j)}{n\epsilon^2 } \]
+\[ = \frac{(1/n)\left(n\tau_0 + 2\sum_{i=1}^n \sum_{j=1}^{i-1} Cov(X_i, X_j)\right)}{n\epsilon^2 } \]
+\[ = \frac{\tau_0 + \frac{2}{n}\sum_{i=1}^n \sum_{j=1}^{i-1} \tau_{i-j}}{n\epsilon^2 } \]
+\[ = \frac{\tau_0 + 2 \sum_{i=1}^{n-1} \frac{(n-i)}{n}\tau_{i}}{n\epsilon^2 } \]
+\[ \le \frac{\tau_0 + 2 \sum_{i=1}^{n-1} \tau_{i}}{n\epsilon^2 } \]
+Now, by the assumption in the problem, the sum in the numerator is bounded, so the entire numerator is finite. Hence as $n \to \infty$, the relevant probability decreases on the order of $1/(n\epsilon^2)$, so we have that the expression $\bar{X}_n - \bar{\mu}_n \to  0$.
+
+\section*{Problem 4}
+\begin{itemize}
+\item It suffices to show this for $X_i$'s; it holds for the $Y_i$'s symmetrically. Consider
+\[ S^2_X = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X}_n)^2 \]
+\[ = \frac{1}{n-1}\sum_{i=1}^n (X_i^2 - 2X_i\bar{X}_n + \bar{X}_n^2) \]
+\[ = \frac{1}{n-1}\sum_{i=1}^n X_i^2 - \frac{2}{n-1}\bar{X}_n\sum_{i=1}^n X_i + \frac{1}{n-1}\sum_{i=1}^n \bar{X}_n^2 \]
+\[ = \frac{1}{n-1}\sum_{i=1}^n X_i^2 - \frac{2n}{n-1}\bar{X}_n^2 + \frac{n}{n-1} \bar{X}_n^2 \]
+\[ = \frac{1}{n-1}\sum_{i=1}^n X_i^2 - \frac{n}{n-1}\bar{X}_n^2  \]
+\[ = \frac{n}{n-1}\left(\frac{1}{n}\left(\sum_{i=1}^n X_i^2\right) - \bar{X}_n^2 \right) \]
+Now, by the weak law of large numbers:
+\[ \frac{1}{n}\left(\sum_{i=1}^n X_i^2\right) \to_p E[X_i^2] = \sigma_X^2 + \mu_X^2 \]
+Further $\bar{X}_n \to_p \mu_X$, so by Rule 3, $\bar{X}_n^2 \to_p \mu_X^2$. Lastly, we note that as $n\to\infty$, $n/(n-1) \to_p 1$, so we get
+\[ S^2_X \to_p 1(\sigma_X^2 + \mu_X^2 - \mu_X^2) = \sigma_X^2 \]
+\item Now, we examine
+\[ S_{XY} = \frac{1}{n-1} \sum_{i=1}^n  (X_i - \bar{X}_n) (Y_i - \bar{Y}_n) \]
+\[ = \frac{1}{n-1}\left( \sum_{i=1}^n  (X_iY_i - \bar{X}_n Y_i - \bar{Y}_nX_i +\bar{X}_n\bar{Y}_n ) \right) \]
+\[ = \frac{1}{n-1}\left( \sum_{i=1}^n  (X_iY_i) - n \bar{X}_n \bar{Y}_n - n \bar{Y}_n\bar{X}_n + n\bar{X}_n\bar{Y}_n ) \right) \]
+\[ = \frac{n}{n-1}\left( \frac{1}{n}\sum_{i=1}^n  (X_iY_i) - \bar{X}_n \bar{Y}_n ) \right) \]
+Now, once again, we know $n/(n-1) \to_p 1$, by the WLLN $\frac{1}{n}\sum_{i=1}^n  (X_iY_i) \to_p E[XY]$, $\bar{X}_n \to_p \mu_X$, and $\bar{Y}_n \to_p \mu_Y$. Hence we have
+\[ S_{XY} \to_p E[XY] - \mu_X \mu_Y = Cov(X,Y) = \sigma_{XY} \]
+\item We take our statistic to be
+\[ \hat{\rho} =  \frac{S_{XY}}{\sqrt{S_X^2S_Y^2}} \]
+By Rule 3 and part a, $S_X^2 S_Y^2 \to_p \sigma_X^2 \sigma_Y^2$. By part b, $S_{XY} \to_p \sigma_{XY}$. Finally, by Slutsky and rule 3, we get that
+\[ \hat{\rho} \to_p \frac{\sigma_{XY}}{\sqrt{\sigma^2_X \sigma^2_Y}} = \rho_{XY} \]
+\end{itemize}
+\section*{Problem 5}
+\begin{itemize}
+\item We compute, using integration by parts
+\[ \int_0^\infty \lambda x e^{-\lambda x} = - x e^{-\lambda x} \Big|_0^\infty + \int_0^\infty e^{-\lambda x} \]
+\[ = \frac{1}{\lambda} ( 1 - e^{-\lambda \infty}) = \frac{1}{\lambda} \]
+\item We take the estimator: $\hat{\lambda} = n / \sum X_i$.
+We note that
+\[ \hat{\lambda} = \frac{1}{\frac{1}{n}\sum_{i=1}^n X_i } \]
+We know from the WLLN that $\frac{1}{n}\sum_{i=1}^n X_i  \to_p E[X] = \frac{1}{\lambda}$. Hence we have from Slutsky's theorem that
+\[ \hat{\lambda} \to_p \frac{1}{(1/\lambda)} = \lambda \]
+\end{itemize}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
