@@ -1,0 +1,197 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 5}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\section*{Problem 1}
+By the definition of convergence in distribution, we must have that
+\[ \lim_{n \to \infty} \Pr (Y_n \le y) = \phi(y) \]
+Then
+\[ \lim_{n \to \infty} \Pr (-Y_n \le y) = \lim_{n \to \infty} \Pr (Y_n \ge -y) \]
+\[ = \lim_{n \to \infty} \left( 1 - \Pr (Y_n \le -y) \right)  \]
+\[ = 1 - \lim_{n \to \infty}  \Pr (Y_n \le -y)   \]
+\[  = 1 - \phi(-y) \]
+\[  = \phi(y) \]
+Hence $-Y_n \to_d Z$.
+\section*{Problem 2}
+Consider an arbitrary element $\hat{\Sigma}_n[i,j]$.
+\[ \hat{\Sigma}_n[i,j] = \frac{1}{n}\left( \sum_{t=1}^n (X_t[i] - \overline{X}_n[i])(X_t[j] - \overline{X}_n[j]) \right)\]
+\[ = \frac{1}{n}\left( \sum_{t=1}^n (X_t[i]X_t[j] - \overline{X}_n[i]X_t[j]- \overline{X}_n[j]X_t[i] + \overline{X}_n[j]\overline{X}_n[i]) \right) \]
+\[ = \frac{1}{n}\left( \sum_{t=1}^n X_t[i]X_t[j] - \overline{X}_n[i]\sum_{t=1}^n X_t[j]- \overline{X}_n[j]\sum_{t=1}^n X_t[i] + n \overline{X}_n[j]\overline{X}_n[i] \right) \]
+\[ = \frac{1}{n}\left( \sum_{t=1}^n X_t[i]X_t[j] - n\overline{X}_n[i]\overline{X}_n[j]- n\overline{X}_n[j]\overline{X}_n[i] + n \overline{X}_n[j]\overline{X}_n[i] \right) \]
+\[ = \frac{1}{n}\left( \sum_{t=1}^n X_t[i]X_t[j] - n\overline{X}_n[i]\overline{X}_n[j] \right) \]
+\[ = \frac{1}{n}\left( \sum_{t=1}^n X_t[i]X_t[j]\right) - \overline{X}_n[i]\overline{X}_n[j]  \]
+Now, by the WLLN, the first term converges in probability to $E[X[i]X[j]]$, $\overline{X}_n[i] \to_p \mu[i]$, $\overline{X}_n[j] \to_p \mu[j]$. Then from the rules for convergence in probability shown in lecture, we get
+\[ \hat{\Sigma}_n[i,j] \to_p E[X[i]X[j]] - \mu[i]\mu[j]  = \Sigma[i,j] + \mu[i]\mu[j] - \mu[i]\mu[j]= \Sigma[i,j] \]
+Hence
+\[ \hat{\Sigma}_n \to_p \Sigma\]
+\section*{Problem 3}
+Suppose $\sqrt{n}(\hat{\theta_n} - \theta) \to_d Z = N(0, \Sigma)$. Once again by the mean value theorem, $\exists$ a vector $\theta^*_n$ which elementwise is between $\theta, \hat{\theta_n}$ such that
+\[ \sqrt{n} \left( g(\hat{\theta}_{n}) - g(\theta)\right) = G(\theta^*_n)\sqrt{n}(\hat{\theta_n} - \theta) \]
+Again,
+\[G(\theta^*_n) \to_p  G(\theta) \]
+Then
+\[ \sqrt{n} \left( g(\hat{\theta}_{n}) - g(\theta)\right) = G(\theta^*_n)\sqrt{n}(\hat{\theta_n} - \theta) \]
+\[ \to_d G(\theta) N(0,\Sigma) = N(0, G\Sigma G') \]
+
+\section*{Problem 4}
+We know that
+\[ H_{n,1} \to_p \mu \]
+and by the WLLN:
+\[ H_{n,2} \to_p E[X^2] = \sigma^2 + \mu^2 \]
+Let $H = (\mu, \ \sigma^2 + \mu^2)'$. Further we note that if we take
+\[ Y_i = \begin{bmatrix}
+X_i \\
+X_i^2
+\end{bmatrix} \]
+\[ Y = \begin{bmatrix}
+X \\
+X^2
+\end{bmatrix} \]
+We compute the variance matrix of $Y$, $\Sigma$. Then $Y$ has the variance matrix given by:
+\[ \Sigma = \begin{bmatrix}
+\sigma^2 & E[X^3] - \mu(\sigma^2 + \mu^2) \\
+E[X^3] - \mu(\sigma^2 + \mu^2) & E[X^4] - (\sigma^2 + \mu^2)^2
+\end{bmatrix} \]
+Then by the multivariate CLT, we have
+\[ \sqrt{n}(H_n - H) \to_d N(0, \Sigma) \]
+\section*{Problem 5}
+Suppose $Y_n \to_d c$. Then by definition,
+\[ \lim_{n \to \infty} \Pr(Y_n \le y) = \mathbbm{1}_{c \le y} \]
+\[ \lim_{n \to \infty} \Pr(Y_n \ge y) = \lim_{n \to \infty} 1 - \Pr(Y_n \le y)  = 1 - \mathbbm{1}_{c \le y} = \mathbbm{1}_{c \ge y} \]
+Since $ \epsilon > 0$,
+\[\lim_{n \to \infty} \Pr(Y_n  > c + \epsilon) = 0 \]
+\[\lim_{n \to \infty} \Pr(Y_n  < c - \epsilon) = 0 \]
+Then
+\[ \lim_{n \to \infty} \Pr(|Y_n - c| > \epsilon) = \lim_{n \to \infty} \Pr(Y_n  > c + \epsilon) + \lim_{n \to \infty} \Pr(Y_n  < c - \epsilon) \]
+\[ = 0 \]
+And therefore $Y_n \to_p c$.
+
+Now suppose $Y_n \to_p c$. Then for any $\epsilon > 0$,
+\[\lim_{n \to \infty} \Pr(|Y_n - c| > \epsilon) = 0 \]
+\[ \lim_{n \to \infty} \Pr(Y_n < c - \epsilon) \le \lim_{n \to \infty} \Pr(|Y_n - c| > \epsilon) = 0 \]
+\[ \lim_{n \to \infty} \Pr(Y_n < c - \epsilon) = 0 \]
+This implies that if $y < c$
+\[ \lim_{n \to \infty} \Pr(Y_n < y) = 0 \]
+Similarly,
+\[ \lim_{n \to \infty} \Pr(Y_n > c + \epsilon) \le \lim_{n \to \infty} \Pr(|Y_n - c| > \epsilon) = 0 \]
+so
+\[ \lim_{n \to \infty} \Pr(Y_n > c + \epsilon) = 0 \]
+This implies that if $y \ge c$,
+\[ \lim_{n \to \infty} \Pr(Y_n < y) = \lim_{n \to \infty} 1 - \Pr(Y_n > y) = 1 \]
+And hence together with the prevvious observation
+\[ \lim_{n \to \infty} \Pr(Y_n < y) = \mathbbm{1}_{c \le y} \]
+This implies that $Y_n \to_d c$. So $Y_n \to_p c \iff Y_n \to_d c$.
+\section*{Problem 6}
+\begin{enumerate}[label=(\alph*)]
+\item By the delta method,
+\[ \sqrt{n} (\hat{\theta}_n - \theta)' c  = \sqrt{n} (\hat{\theta}_n'c - \theta'c) \to_d W'c = N(0,c'\Sigma c) \]
+\item We can just take $c = (1, 0, 0, 0, ...)$ from the previous part to
+\[ \sqrt{n} (\hat{\theta}_{n,1} - \theta_1) \to_d N(0, \Sigma_{11}) \]
+\item We can apply the CMT using $h(z) = z'z$. Then
+\[ n (\hat{\theta}_n- \theta)'(\hat{\theta}_n- \theta) = (\sqrt{n} (\hat{\theta}_n- \theta))'(\sqrt{n}(\hat{\theta}_n- \theta)) \]
+\[ \to W'W \]
+\item We can take $c = (1, -1, 0, 0, ...)$ from part (a) to get
+\[ \sqrt{n} ((\hat{\theta}_{n,1} - \hat{\theta}_{n,2}) - (\theta_1 - \theta_2)) \to_d N(0, \Sigma_{11} - 2\Sigma_{12} + \Sigma_{22}) \]
+\end{enumerate}
+\section*{Problem 7}
+\[ V((X_i - \mu)^2) = E[(X_i - \mu)^4] - E[(X_i - \mu)^2]^2 \]
+\[  = E[X_i^4 - 4 X_i^3 \mu  + 6 X_i^2 \mu^2 - 4 X_i \mu^3 + \mu^4] - (E[X_i^2] - \mu^2)^2 \]
+\[ = E[X_i^4] - 4\mu E[X_i^3] + 6E[X_i^2]\mu^2 - 4\mu^4 + \mu^4 - (E[X_i^2]^2 - 2\mu^2 E[X_i^2]+ \mu^4) \]
+\[ = E[X_i^4] - 4\mu E[X_i^3] + 8E[X_i^2]\mu^2 - 4\mu^4 - E[X_i^2]^2  \]
+Define
+\[ Y_k = \frac{1}{n}\sum_{i=1}^n X_i^k \]
+By the WLLN,
+\[ Y_k \to_p E[X^k] \]
+As a note, $Y_1 \to_p \mu$. Then we know by applications of the convergence rules and Slutsky's theorem,
+\[ Y_4 - 4Y_1 Y_3 + 8Y_2 Y_1^2 - 4 Y_1^4 - Y_2^2 \to_p E[X_i^4] - 4\mu E[X_i^3] + 8E[X_i^2]\mu^2 - 4\mu^4 - E[X_i^2]^2 = V(X_i - \mu^2) \]
+And hence that is our estimator.
+
+\section*{Problem 8}
+\begin{enumerate}[label=(\roman*)]
+\item We already know the variances, so consider
+\[ \frac{\sum_{i=1}^n( X_i - \overline{X}_n)(Y_i- \overline{Y}_n)}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+The expectation is
+\[ E\left[ \frac{\sum_{i=1}^n( X_i - \overline{X}_n)(Y_i- \overline{Y}_n)}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}}\right] \]
+\[ =\frac{\sum_{i=1}^nE[( X_i - \overline{X}_n)(Y_i- \overline{Y}_n)]}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ =\frac{\sum_{i=1}^nE[ X_i Y_i] - n E [\overline{X}_n\overline{Y}_n]}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \frac{\sum_{i=1}^n (Cov(X,Y) + E[X]E[Y]) - n Cov(\overline{X}_n, \overline{Y}_n) - n E[\overline{X}_n]E[\overline{Y}_n]}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \frac{ n Cov(X,Y) + n E[X]E[Y] - n^{-1} Cov(\sum_i {X}_i, \sum_i {Y}_I) - n E[\overline{X}_n]E[\overline{Y}_n]}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \frac{ n Cov(X,Y) + n E[X]E[Y] -  Cov(X, Y) - n E[X]E[Y]}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \frac{ (n-1) Cov(X,Y)}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \rho \]
+so this is unbiased.
+\item For consistency, we rewrite this as
+\[ \frac{\sum_{i=1}^n( X_i - \overline{X}_n)(Y_i- \overline{Y}_n)}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \]
+\[ = \frac{n}{n-1} \left(\frac{\frac{1}{n}\sum_{i=1}^n X_iY_i - \overline{X}_n\overline{Y}_n)}{\sqrt{\sigma_X^2 \sigma_Y^2}} \right) \]
+By WLLN,
+\[\frac{1}{n}\sum_{i=1}^n X_iY_i \to_p E[XY] \]
+\[\overline{X}_n \to_p E[X] \]
+\[\overline{Y}_n \to_p E[Y] \]
+and
+\[ n/(n-1) \to_p 1 \]
+then applying the properties shown in lecture,
+\[ \frac{n}{n-1} \left(\frac{\frac{1}{n}\sum_{i=1}^n X_iY_i - \overline{X}_n\overline{Y}_n)}{(n-1)\sqrt{\sigma_X^2 \sigma_Y^2}} \right) \to_p \frac{E[XY] - E[X]E[Y]}{\sqrt{\sigma_X^2 \sigma_Y^2}} = \frac{Cov(X,Y)}{\sigma_X \sigma_Y} = \rho\]
+So this estimator is consistent.
+\item Lastly, we want to characterize
+\[ \sqrt{n} ( \hat{\rho} - \rho) \]
+\[ = \sqrt{n}\left( \frac{\sum_{i=1}^n( X_i - \overline{X}_n)(Y_i- \overline{Y}_n)}{(n-1)\sigma_X\sigma_Y} - \rho \right)  \]
+\[ = \sqrt{n}\left( \frac{\sum_{i=1}^n X_i Y_i - n \overline{X}_n\overline{Y}_n}{(n-1)\sigma_X\sigma_Y} - \rho \right)  \]
+\[ = \frac{1}{\sigma_X\sigma_Y}\left( \frac{\sqrt{n}}{n-1} \sum_{i=1}^n X_i Y_i - \frac{ n\sqrt{n} }{(n-1)}\overline{X}_n\overline{Y}_n - \sqrt{n}\sigma_X\sigma_Y\rho \right)  \]
+\[ = \frac{1}{\sigma_X\sigma_Y}\left( \frac{\sqrt{n}}{n-1} \sum_{i=1}^n X_i Y_i - \frac{ n\sqrt{n} }{(n-1)}\overline{X}_n\overline{Y}_n - \sqrt{n}\sigma_{XY} \right)  \]
+\[ = \frac{1}{\sigma_X\sigma_Y}\left( \frac{\sqrt{n}}{n-1} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \frac{n\sqrt{n}}{n-1}(\overline{X}_n\overline{Y}_n - \mu_X \overline{Y}_n - \mu_Y \overline{X}_n + \mu_X\mu_Y)  - \sqrt{n}\sigma_{XY} \right)  \]
+\[ = \frac{1}{\sigma_X\sigma_Y}\left( \frac{n\sqrt{n}}{n-1} \left(\frac{1}{n} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \sigma_{XY}\right) - \frac{n}{n-1}\sqrt{n}(\overline{X}_n-\mu_X)(\overline{Y}_n -\mu_Y)  - \sqrt{n}\sigma_{XY} + \sigma_{XY} \frac{n\sqrt{n}}{n-1} \right)  \]
+\[ = \frac{1}{\sigma_X\sigma_Y}\left( \frac{n\sqrt{n}}{n-1} \left(\frac{1}{n} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \sigma_{XY}\right) - \frac{n}{n-1}\sqrt{n}(\overline{X}_n-\mu_X)(\overline{Y}_n -\mu_Y) + \sigma_{XY} \frac{\sqrt{n}}{n-1} \right)  \]
+Now, from the CLT, we have
+\[ \sqrt{n}\left(\frac{1}{n} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \sigma_{XY}\right) \to_d N(0, V((X - \mu_X) (Y - \mu_Y))) \]
+\[ \sqrt{n}(\overline{X}_n-\mu_X) \to_d N(0, \sigma_X^2)\]
+by the WLLN, we have
+\[ (\overline{Y}_n -\mu_Y) \to_d 0\]
+Additionally,
+\[ \frac{n}{n-1} \to_p 1 \]
+\[ \frac{\sqrt{n}}{n-1}\to_p 0\]
+Combining, we get
+\[\frac{n\sqrt{n}}{n-1} \left(\frac{1}{n} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \sigma_{XY}\right) \to_d N(0, V((X - \mu_X) (Y - \mu_Y))) \]
+\[ \frac{n}{n-1}\sqrt{n}(\overline{X}_n-\mu_X)(\overline{Y}_n -\mu_Y) \to_d 0\cdot N(0, \sigma_X^2) = 0\]
+\[ \sigma_{XY} \frac{\sqrt{n}}{n-1} \to_d 0\]
+So together, we get
+\[\sqrt{n}( \hat{ \rho} - \rho) = \frac{1}{\sigma_X\sigma_Y}\left( \frac{n\sqrt{n}}{n-1} \left(\frac{1}{n} \sum_{i=1}^n (X_i - \mu_X) (Y_i - \mu_Y) - \sigma_{XY}\right) - \frac{n}{n-1}\sqrt{n}(\overline{X}_n-\mu_X)(\overline{Y}_n -\mu_Y) + \sigma_{XY} \frac{\sqrt{n}}{n-1} \right)\] \[ \to_d \frac{1}{\sigma_X\sigma_Y} N(0, V((X - \mu_X) (Y - \mu_Y))) = N\left(0, \frac{V((X - \mu_X) (Y - \mu_Y)))}{\sigma_X^2 \sigma_Y^2} \right) \]
+
+
+
+\end{enumerate}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
