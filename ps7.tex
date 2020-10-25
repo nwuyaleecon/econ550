@@ -1,0 +1,94 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 5}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+	% tells latex to follow your header (e.g., title, author) commands.
+\section*{Problem 1}
+\begin{enumerate}[label=(\alph*)]
+\item We have
+\[ P(|(\hat{\theta} - \theta)| > 2/\sqrt{n}) = P(|\sqrt{n}(\hat{\theta} - \theta)| > 2) \]
+Now, since $\sqrt{n}(\hat{\theta} - \theta) \to_d N(0, \theta^2)$, by symmetry of the normal distribution we can approximate this then as
+\[ P(|\sqrt{n}(\hat{\theta} - \theta)| > 2) \approx 2P(\sqrt{n}(\hat{\theta} - \theta) > 2) \]
+\[ = 2 (1 - \Phi(2/\sqrt{\theta^2})) = 2 (1 - \Phi(2/|\theta|)) \]
+\item Since $\sqrt{n}(\hat{\theta} - \theta) \to_d N(0, \theta^2)$ and $\hat{\theta} \to_p \theta$, we have $\sqrt{n}(\hat{\theta} - \theta)/|\hat{\theta}| \to_d N(0, \theta^2/|\theta|^2) = N(0,1)$. Hence, we get
+\[ P(|(\hat{\theta} - \theta)| > 2/\sqrt{n}) = P(|\sqrt{n}(\hat{\theta} - \theta)| > 2) \]
+\[  = P(|(\sqrt{n}(\hat{\theta} - \theta))/\hat{\theta}| > 2/|\hat{\theta}|) \]
+\[ \approx 2 (1 - \Phi(2/|\hat{\theta}|)) \]
+\end{enumerate}
+\section*{Problem 2}
+As in PS5, we define
+\[ \hat{\lambda}_n = \frac{1}{\bar{X}_n} \]
+The variance of $X_i$ is given by
+\[ \int_0^\infty  \left(x - \frac{1}{\lambda}\right)^2 \lambda e^{-\lambda x} \ dx = \frac{1}{\lambda^2} \]
+Then by the CLT $\sqrt{n}(\bar{X}_n - 1/\lambda) \to_d N(0, 1/\lambda^2)$
+\section*{Problem 3}
+The objective can be rewritten as
+\[ (Y - X\hat{\beta})'(Y - X\hat{\beta}) = Y'Y - Y'X\hat{\beta} - X'Y\hat{\beta} + X'X\hat{\beta}^2 = Y'Y - 2X'Y\hat{\beta} +  X'X\hat{\beta}^2 \]
+The FOC:
+\[ -2 X'Y + 2 X'X\hat{\beta} = 0 \]
+\[ X'Y  = X'X\hat{\beta}  \]
+Since $X'X$ is nonsingular,
+\[\hat{\beta} =  ( X'X)^{-1} (X'Y)  \]
+\section*{Problem 4}
+We can use the delta method. By Slutsky's theorem,
+\[ g(\hat{\theta}) \to g(\theta) = \begin{bmatrix}
+ \theta_1 - \theta_2  \\
+ \theta_1\theta_3  \\
+\end{bmatrix} \]
+
+The $G(\theta)$ is
+\[ \begin{bmatrix}
+ 1 & -1 & 0  \\
+ \theta_{3} & 0 & \theta_{1} \\
+\end{bmatrix} \]
+So by the delta method,
+\[ \sqrt{n}(g(\hat{\theta}) - g(\theta)) \to_d N(0, G(\theta)\Sigma G(\theta)') \]
+\section*{Problem 5}
+
+\section*{Problem 6}
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
+\section*{Problem 7}
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
+\section*{Problem 8}
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
