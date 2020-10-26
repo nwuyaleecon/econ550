@@ -68,8 +68,7 @@ We can use the delta method. By Slutsky's theorem,
  \theta_1 - \theta_2  \\
  \theta_1\theta_3  \\
 \end{bmatrix} \]
-
-The $G(\theta)$ is
+Then $G(\theta)$ is
 \[ \begin{bmatrix}
  1 & -1 & 0  \\
  \theta_{3} & 0 & \theta_{1} \\
@@ -77,18 +76,136 @@ The $G(\theta)$ is
 So by the delta method,
 \[ \sqrt{n}(g(\hat{\theta}) - g(\theta)) \to_d N(0, G(\theta)\Sigma G(\theta)') \]
 \section*{Problem 5}
+Define $\overline{X_nY_n} = n^{-1}\sum_{i=1}^n X_iY_i$.
+Then we use, as our estimator,
+\[ \hat{\rho} = \frac{\overline{X_nY_n} - \bar{X}_n \bar{Y}_n} {\sqrt{\hat{S}_{Xn}\hat{S}_{Yn}}} \]
+If we define $\overline{X^2_n} = n^{-1}\sum_{i=1}^n X_i^2$ and $\overline{Y^2_n} = n^{-1}\sum_{i=1}^n Y_i^2$, then we get $\hat{S}_{Xn} = n^{-1}(\overline{X^2_n} - \bar{X}_n^2)$ and $\hat{S}_{Yn} = n^{-1}(\overline{Y^2_n} - \bar{Y}_n^2)$.
+Note that by the WLLN,
+\[ \hat{Z} = \begin{bmatrix}
+\overline{X_nY_n} \\
+ \overline{X^2_n} \\
+  \overline{Y^2_n} \\
+  \bar{X}_n \\
+  \bar{Y}_n
+\end{bmatrix} \to_p  \begin{bmatrix}
+Cov(X,Y) + \mu_X\mu_Y \\
+ \sigma_X^2 + \mu_X^2 \\
+  \sigma_Y^2 + \mu_Y^2\\
+  \mu_X \\
+  \mu_Y
+\end{bmatrix} = Z  \]
+Define the variance matrix:
+\[ \Sigma = \begin{bmatrix}
+Var(XY) & Cov(XY, X^2) & Cov(XY, Y^2) & Cov(XY, X) & Cov(XY, Y)\\
+Cov(X^2, XY) & Var(X^2) & Cov(X^2, Y^2) & Cov(X^2, X) & Cov(X^2, Y)\\
+Cov(Y^2, XY) & Cov(Y^2, X^2) & Var(Y^2) & Cov(Y^2, X) & Cov(Y^2, Y)\\
+Cov(X, XY) & Cov(X, X^2) & Cov(X, Y^2) & Var(X) & Cov(X, Y)\\
+Cov(Y, XY) & Cov(Y, X^2) & Cov(Y, Y^2) & Cov(Y, X) & Var(Y)\\
+
+\end{bmatrix} \]
+By the CLT,
+\[ \sqrt{n}(\hat{Z} - Z) \to_d N(0,\Sigma)\]
+Then, if we define:
+\[ g(Z) = \frac{\overline{X_nY_n} - \bar{X}_n \bar{Y}_n} {\sqrt{(\overline{X^2_n} - \bar{X}_n^2)(\overline{Y^2_n} - \bar{Y}_n^2)}} \]
+we can apply the multivariate delta method. Define
+\[ G(Z)' = \begin{bmatrix}
+\frac{1}{\sqrt{(Z_2 - Z_4^2)(Z_3 - Z_5^2)}} \\
+-\frac{(Z_1 - Z_4Z_5)}{2\sqrt{(Z_2 - Z_4^2)^3(Z_3 - Z_5^2)}} \\
+-\frac{(Z_1 - Z_4Z_5)}{2\sqrt{(Z_2 - Z_4^2)(Z_3 - Z_5^2)^3}} \\
+\frac{(Z_1 - Z_4Z_5)}{\sqrt{(Z_2 - Z_4^2)^3(Z_3 - Z_5^2)}}Z_4 - \frac{Z_5} {\sqrt{(Z_2 - Z_4^2)(Z_3 - Z_5^2)}}  \\
+\frac{(Z_1 - Z_4Z_5)}{\sqrt{(Z_2 - Z_4^2)(Z_3 - Z_5^2)^3}}Z_5 - \frac{Z_4} {\sqrt{(Z_2 - Z_4^2)(Z_3 - Z_5^2)}}  \\
+\end{bmatrix} \]
+Then by the multivariate delta method,
+\[ \sqrt{n}(\hat{\rho} - \rho) = \sqrt{n}(g(\hat{Z}) - g(Z)) \to_d N(0, G(Z)\Sigma G(Z)') \]
 
 \section*{Problem 6}
 \begin{enumerate}[label=(\alph*)]
-\item
+\item We have
+\[ \hat{\beta}_n = \left(\sum_{i=1}^n X_iX_i' \right)^{-1} \sum_{i=1}^n X_iY_i \]
+\[ = \left(n^{-1}\sum_{i=1}^n X_iX_i' \right)^{-1} \left (n^{-1} \sum_{i=1}^n X_iY_i \right) \]
+Note by WLLN
+\[ \left(n^{-1}\sum_{i=1}^n X_iX_i' \right)^{-1} \to_p E[X_iX_i'] \]
+\[ \left (n^{-1} \sum_{i=1}^n X_iY_i \right) \to_p E[X_i Y_i]\]
+Hence, using the rules of convergence in probability and Slutsky's theorem (and the fact that $\Sigma_X$ is positive definite)
+\[ \hat{\beta}_n = \left(n^{-1}\sum_{i=1}^n X_iX_i' \right)^{-1} \left (n^{-1} \sum_{i=1}^n X_iY_i \right) \]
+\[ \to_p (E[X_iX_i'])^{-1} E[X_i Y_i] \]
+\[ = (\Sigma_X - \mu_X^2 I) E[X_iX_i'\beta_0 + X_i U_i] \]
+\[ = (\Sigma_X - \mu_X^2 I)^{-1} ((\Sigma_X - \mu_X^2 I) \beta + E[X_i U_i]) \]
+\[ = (\Sigma_X - \mu_X^2 I)^{-1} ((\Sigma_X - \mu_X^2 I) \beta + Cov[X_i U_i]) \]
+\[ = (\Sigma_X - \mu_X^2 I)^{-1} (\Sigma_X - \mu_X^2 I) \beta \]
+\[ = \beta_0 \]
+Hence $\hat{\beta}_n$ is consistent
+\item If $Cov(X_i, U_i) \neq 0$, then we get
+\[ \hat{\beta}_n \to_p E[X_iX_i']^{-1} (E[X_iX_i'] \beta + Cov[X_i U_i]) \]
+\[ = \beta_0 + E[X_iX_i']^{-1} Cov(X_i, U_i) \]
 \end{enumerate}
 \section*{Problem 7}
 \begin{enumerate}[label=(\alph*)]
-\item
+\item The minimand is
+\[ (\hat{\pi}_n - \hat{A}_n \gamma)'(\hat{\pi}_n - \hat{A}_n \gamma)  \]
+\[ = \hat{\pi}_n'\hat{\pi}_n - (\hat{A}_n \gamma)'\hat{\pi}_n - \hat{\pi}_n'\hat{A}_n\gamma + (\hat{A}_n \gamma)'(\hat{A}_n \gamma) \]
+\[ = \hat{\pi}_n'\hat{\pi}_n - 2\hat{\pi}_n'\hat{A}_n\gamma + (\hat{A}_n \gamma)'(\hat{A}_n \gamma) \]
+Taking the FOC, we get
+\[  2\hat{\pi}_n'\hat{A}_n = 2\gamma'\hat{A}_n'\hat{A}_n  \]
+\[  \hat{\pi}_n'\hat{A}_n = \gamma'\hat{A}_n'\hat{A}_n  \]
+Since $ \hat{A}_n$ has full column rank, $\hat{A}_n'\hat{A}_n$ is invertible, and hence
+
+\[ \hat{\gamma}' = (\hat{\pi}_n'\hat{A}_n)(\hat{A}_n'\hat{A}_n)^{-1} \]
+\[ \hat{\gamma} = (\hat{A}_n'\hat{A}_n)^{-1}(\hat{A}_n'\hat{\pi}_n) \]
+\item Define $g(x, y) = (x'x)^{-1} (x'y)$. Then $\hat{\gamma} = g(\hat{A}_n, \hat{\pi_n})$. Since $A$ is full column rank, we have by Slutsky's theorem that
+\[ \hat{\gamma} = g(\hat{A}_n, \hat{\pi_n}) \to_p g(A, \pi_0) = (A'A)^{-1} (A'\pi_0) \]
 \end{enumerate}
 \section*{Problem 8}
 \begin{enumerate}[label=(\alph*)]
+\item The conditional expectation is:
+\[ E[\hat{\beta}] = E[(X'X)^{-1}(X'Y) | X] = E[(X'X)^{-1}(X'(\beta_0 X + U)) | X] \]
+\[ = E[\beta_0 + (X'X)^{-1}(X'U) | X] \]
+\[ = \beta_0 + (X'X)^{-1}X'E[U|X] \]
+\[ = \beta_0 \]
+since $E[U|X] = 0$. Hence $\hat{\beta}$ is unbiased.
 \item
+\[ V[\hat{\beta}] = V[(X'X)^{-1}(X'Y) | X] = V[(X'X)^{-1}(X'(\beta_0 X + U)) | X] \]
+\[ = V[\beta_0 + (X'X)^{-1}(X'U) | X] \]
+\[ = V[ (X'X)^{-1}(X'U) | X] \]
+\[ = (X'X)^{-1}X' V[U|X] X (X'X)^{-1} \]
+\[ = \sigma^2 (X'X)^{-1}X' X (X'X)^{-1} \]
+\[ = \sigma^2 (X'X)^{-1} \]
+\item We know that by WLLN, $X'X/n = n^{-1} \sum X_iX_i' \to_p \Sigma_X$. By Slutsky's theorem, we get $(X'X/n )^{-1} \to_p \Sigma_X^{-1} $ which exists because $\Sigma_X$ is positive definite. Now, we note that
+\[ E[X_i U_i] = E[E[X_i U_i|X_i]] = 0 \]
+\[ V[X_iU_i] = E[X_i X_i' U_i^2] = E[X_i X_i' E[U_i^2 | X_i]]  = \sigma^2 \Sigma_X \]
+so by the CLT
+\[ \sqrt{n}(X'U/n) = \sqrt{n}(X'U/n - E[X'U/n]) \to_d N(0, \sigma^2\Sigma_X) \]
+Using these two, we have
+\[ \sqrt{n} (\hat{\beta} - \beta_0) = \sqrt{n} ((X'X)^{-1}(X'Y) - \beta_0) \]
+\[ = \sqrt{n}((X'X)^{-1}X'(\beta_0X + U) - \beta_0) \]
+\[ = \sqrt{n}(X'X)^{-1}X'U \]
+\[ = (X'X/n)^{-1} \cdot \sqrt{n}(X'U/n) \]
+\[ \to_d \Sigma_X^{-1} N(0, \sigma^2\Sigma_X)\]
+\[ =  N(0, \sigma^2\Sigma_X^{-1})\]
+
+\item We need to estimate $\sigma^2\Sigma_X^{-1}$.
+Consider:
+\[ \hat{\sigma}^2 = \frac{1}{n}(Y-X\hat{\beta})'(Y-X\hat{\beta})(X'X/n )^{-1} \]
+\[ = \frac{1}{n}(Y-X(X'X)^{-1}(X'Y))'(Y-X(X'X)^{-1}(X'Y))(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}((I-X(X'X)^{-1}X')Y)'((I-X(X'X)^{-1}X')Y)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}Y'(I-X(X'X)^{-1}X')'((I-X(X'X)^{-1}X')Y)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}Y'(I-2X(X'X)^{-1}X' + X(X'X)^{-1}X'X(X'X)^{-1}X')Y(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}Y'(I-2X(X'X)^{-1}X' + X(X'X)^{-1}X')Y(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}Y'(I-X(X'X)^{-1}X')Y(X'X/n )^{-1}  \]
+Now, we plug in for $Y$
+\[ = \frac{1}{n}(X\beta_0 + U)'(I-X(X'X)^{-1}X')(X\beta_0 + U)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}(X\beta_0 + U)'(X\beta_0 + U -X(X'X)^{-1}X'X\beta_0 -X(X'X)^{-1}X'X U)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}(X\beta_0 + U)'(X\beta_0 + U -X\beta_0 -X(X'X)^{-1}X' U)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}(X\beta_0 + U)'( U -X(X'X)^{-1}X' U)(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}(X\beta_0 + U)'( I -X(X'X)^{-1}X' )U(X'X/n )^{-1}  \]
+Applying the same process to $(X\beta_0 + U)'( I -X(X'X)^{-1}X' )$ we get
+\[ = \frac{1}{n}U'( I -X(X'X)^{-1}X' )U(X'X/n )^{-1}  \]
+\[ = \frac{1}{n}(U'U  -(U'X)(X'X)^{-1}(X'U))(X'X/n )^{-1}  \]
+\[ = (U'U/n  - (U'X/n)(X'X/n)^{-1}(X'U/n))(X'X/n )^{-1}  \]
+Now, by the WLLN, we know $(X'U/n) \to_p E[X_i U_i] = E[E[X_i U_i|X_i]] = 0$. Also by the WLLN, $U'U/n \to_p E[U_i^2] = \sigma^2$. Finally from the previous part, we know $(X'X/n )^{-1} \to_p \Sigma_X^{-1}$. Combining,
+\[ (U'U/n  - (U'X/n)(X'X/n)^{-1}(X'U/n))(X'X/n )^{-1} \to_p (\sigma^2 - 0\cdot \Sigma_X^{-1} \cdot 0) \Sigma_X^{-1} = \sigma^2 \Sigma_X^{-1}\]
+and hence $\hat{\sigma}^2$ is our consistent estimator.
+
 \end{enumerate}
 \end{document}
 	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
