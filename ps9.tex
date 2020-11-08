@@ -1,0 +1,222 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 9}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+\section*{Problem 1}
+Taking the canonical projection into the first dimension, we get
+\[ \sqrt{n} \left( \hat{\beta}_{n,1} - \beta_{0,1} \right) \to_d N(0, \Sigma_{11}) \]
+\[ \frac{\sqrt{n}}{\sqrt{\hat{\Sigma_{11}}}} \left( \hat{\beta}_{n,1} - \beta_{0,1} \right) \to_d N(0,1) \]
+The confidence interval is then
+\[ \left[\hat{\beta}_{n,1} - \frac{\sqrt{\hat{\Sigma_{11}}}}{\sqrt{n}}z_{1-\alpha/2},\hat{\beta}_{n,1} + \frac{\sqrt{\hat{\Sigma_{11}}}}{\sqrt{n}}z_{1-\alpha/2}  \right] \]
+\[ = [3.2 - \frac{\sqrt{1.7}}{\sqrt{n}}2.576, 3.2 + \frac{\sqrt{1.7}}{\sqrt{n}}2.576 ] \]
+\section*{Problem 2}
+\begin{enumerate}[label=(\alph*)]
+\item Taking the canonical projection mapping into 1d, we can apply the CMT to get that $\sqrt{n} (\hat{\theta}_{n,1} - \theta_{0,1}) \to_d N(0,\Sigma_{11})$
+Since $\hat{\Sigma_{11}} \to \Sigma_{11}$, we get
+\[ \frac{\sqrt{n}}{\sqrt{\hat{\Sigma}_{11}}} (\hat{\theta}_{n,1} - \theta_{0,1}) \to_d N(0, 1) \]
+So the interval is
+\[ \left[ \hat{\theta}_{n,1} - \frac{\sqrt{\hat{\Sigma}_{11}}}{\sqrt{n}}z_{1-\alpha/2},  \hat{\theta}_{n,1} + \frac{\sqrt{\hat{\Sigma}_{11}}}{\sqrt{n}}z_{1-\alpha/2} \right] \]
+\[ =
+ \left[ 1.2 - \frac{1}{\sqrt{n}}1.96,  1.2 + \frac{1}{\sqrt{n}}1.96 \right] \]
+\item We use the delta method to characterize the asymptotic distribution of $\sqrt{n}\left(\hat{\theta}_{n,1} \hat{\theta}_{n,2} - \theta_{0,1} \theta_{0,2}\right)$. Take $g(x,y) = xy$. Then $G(\theta_0)$ is
+\[ G(\theta_0) = \begin{bmatrix}
+  \theta_{0,2} & \theta_{0,1} \\
+\end{bmatrix}  \]
+We have that $G(\hat{\theta}_n) \to_p G(\theta_0)$, $\hat{\Sigma} \to_p \Sigma$, so we have that
+\[ \frac{\sqrt{n}}{\sqrt{G(\hat{\theta}_n)\hat{\Sigma}G(\hat{\theta}_n)' }}\left(\hat{\theta}_{n,1} \hat{\theta}_{n,2} - \theta_{0,1} \theta_{0,2}\right) \to_d N(0,1) \]
+So the interval is
+\[ \left[ \hat{\theta}_{n,1} \hat{\theta}_{n,2} - \frac{\sqrt{G(\hat{\theta}_n)\hat{\Sigma}G(\hat{\theta}_n)' }}{\sqrt{n}}z_{1-\alpha/2}, \hat{\theta}_{n,1} \hat{\theta}_{n,2} + \frac{\sqrt{G(\hat{\theta}_n)\hat{\Sigma}G(\hat{\theta}_n)' }}{\sqrt{n}}z_{1-\alpha/2} \right] \]
+\[ = [2.76 - \frac{\sqrt{8.41}}{\sqrt{n}}1.645,2.76 + \frac{\sqrt{8.41}}{\sqrt{n}}1.645 ] \]
+\end{enumerate}
+\section*{Problem 3}
+\begin{enumerate}[label=(\alph*)]
+\item The interval is given by
+\[ \left[ \hat{\beta}_{LS} - \sqrt{\frac{\hat{\sigma}^2}{n s^2_X}}t_{n-2,1-\alpha/2}, \hat{\beta}_{LS} + \sqrt{\frac{\hat{\sigma}^2}{n s^2_X}}t_{n-2,1-\alpha/2} \right] \]
+\[ = \left[1.4 - \frac{2}{15}t_{23,0.975} , 1.4+\frac{2}{15}t_{23,0.975}\right] \]
+\[ = [1.12, 1.68] \]
+\item Exact, since the $t$ statistic follows the $t$ distribution.
+\item The one sided interval is
+\[ \left[ \hat{\beta}_{LS} - \sqrt{\frac{\hat{\sigma}^2}{n s^2_X}}t_{n-2,1-\alpha}, \infty \right) \]
+\[ = [1.07, \infty) \]
+\end{enumerate}
+\section*{Problem 4}
+\begin{enumerate}[label=(\alph*)]
+\item The log-likelihood is
+\[ k \log \theta + (n-k) \log (1-\theta) \]
+where $k$ is the number of $i$ such that $X_i=1$.
+The maximization FOC is
+\[ \frac{k}{\hat{\theta}}  = \frac{n-k}{1-\hat{\theta}} \]
+\[ \hat{\theta} (n-k) = k(1-\hat{\theta}) \]
+\[ \hat{\theta} n = k \]
+\[ \hat{\theta} = k/n = n^{-1} \sum_i X_i = \bar{X}_n \]
+So this is our MLE.
+\item The log-likelihood is (dropping constant terms)
+\[ - \frac{n}{2}\log \sigma^2 - \frac{1}{2\sigma^2}\sum_i (X_i - \mu)^2 \]
+Solving the FOC for $\mu$, we get $\mu = \bar{X}_n$. Solving the FOC for $\sigma^2$,
+\[ \frac{n}{2} = \frac{1}{2\sigma^2} \sum_i (X_i - \bar{X}_n)^2 \]
+\[ \hat{\sigma}^2 = n^{-1} \sum_i (X_i - \bar{X}_n)^2\]
+\end{enumerate}
+\section*{Problem 5}
+\begin{enumerate}[label=(\alph*)]
+\item
+\[ EX_1 = \int_0^\infty \lambda x e^{-\lambda x} = -xe^{-\lambda x}\Bigr|_0^\infty + \int e^{-\lambda x} \Bigr|_0^\infty \]
+\[ = 0 - \frac{-1}{\lambda} = 1/\lambda \]
+\item The log likelihood is
+\[ n \log \lambda - \lambda \sum X_i \]
+The MLE is
+\[ \hat{\lambda} = \frac{n}{\sum X_i} \]
+\item By the WLLN $\bar{X}_n \to_p EX_1 = 1/\lambda$ so by Slutsky's theorem,
+\[ \hat{\lambda} \to_p 1/(1/\lambda) = \lambda \]
+And hence $\hat{\lambda}$ is consistent.
+\item We note that
+\[ E[X_1^2] = \int_0^\infty \lambda x^2 e^{-\lambda x} = \frac{2}{\lambda^2}  \]
+\[ VX_1 = E[X_1^2] - (EX_1)^2 = \frac{1}{\lambda^2} \]
+By the CLT, $\sqrt{n} (\bar{X}_n - 1/\lambda) \to_d N(0, 1/\lambda^2)$. By the delta method, taking $g(x) = 1/x$, $g'(1/\lambda) = -\lambda^2$ so we have
+\[ \sqrt{n} (\hat{\lambda} - \lambda) \to_d N(0, \lambda^2) \]
+\end{enumerate}
+\section*{Problem 6}
+Let $g(a, b) = \sqrt{b}/a$. Then the desired distribution is
+\[ \sqrt{n} \left( g\left(\begin{bmatrix}\bar{X}_n\\ S^2_{X_n}\end{bmatrix}\right) - g\left(\begin{bmatrix} \mu \\ \sigma^2 \end{bmatrix}\right)\right)\]
+By the delta method, we have
+\[ G(\theta_0) = \begin{bmatrix} \frac{-\sigma}{\mu^2} & \frac{1}{2\mu\sigma} \end{bmatrix}\]
+So
+\[ \sqrt{n} \left( g\left(\begin{bmatrix}\bar{X}_n\\ S^2_{X_n}\end{bmatrix}\right) - g\left(\begin{bmatrix} \mu \\ \sigma^2 \end{bmatrix}\right)\right) \to_d N(0, G(\theta_0)\Sigma G(\theta_0)')\]
+By Slutsky's theorem,
+\[ \sqrt{S^2_{X_n}} \to_p \sigma \]
+and we know
+\[ \bar{X_n} \to_p \mu \]
+Hence by the rules of convergence in probability, the estimator
+\[ \hat{G} = \begin{bmatrix} \frac{-\sqrt{S^2_{X_n}} }{\bar{X_n} ^2} & \frac{1}{2\bar{X_n} \sqrt{S^2_{X_n}} } \end{bmatrix} \to_p \begin{bmatrix} \frac{-\sigma}{\mu^2} & \frac{1}{2\mu\sigma} \end{bmatrix}= G(\theta_0) \]
+We know
+\[ (\hat{G}\hat{\Sigma}\hat{G}')^{-1/2} \sqrt{n} \left(\frac{S_{X_n}}{\bar{X_n}} - \frac{\sigma}{\mu} \right) \to_p N(0,1) \]
+So the desired confidence interval is
+\[ \left[\frac{S_{X_n}}{\bar{X_n}} - n^{-1/2}(\hat{G}\hat{\Sigma}\hat{G}')^{1/2}z_{0.975}, \frac{S_{X_n}}{\bar{X_n}} +n^{-1/2}(\hat{G}\hat{\Sigma}\hat{G}')^{1/2}z_{0.975} \right] \]
+To show that this does indeed asymptotically contain the true value $\sigma/\mu$ with probability 0.95, we note that in PS8 we already showed
+\[ (\hat{G}\hat{\Sigma}\hat{G}')^{-1/2} \sqrt{n} \left(\frac{S_{X_n}}{\bar{X_n}} - \frac{\sigma}{\mu} \right) \to_p N(0,1) \]
+Hence
+\[ P\left(\sigma/\mu \in \left[\frac{S_{X_n}}{\bar{X_n}} - n^{-1/2}(\hat{G}\hat{\Sigma}\hat{G}')^{1/2}z_{0.975}, \frac{S_{X_n}}{\bar{X_n}} +n^{-1/2}(\hat{G}\hat{\Sigma}\hat{G}')^{1/2}z_{0.975} \right]\right) \]
+\[ = P\left(\left|\frac{S_{X_n}}{\bar{X_n}} - \sigma/\mu\right| \le  n^{-1/2}(\hat{G}\hat{\Sigma}\hat{G}')^{1/2}z_{0.975} \right) \]
+\[ = P\left( \hat{G}\hat{\Sigma}\hat{G}')^{-1/2} \sqrt{n} \left|\frac{S_{X_n}}{\bar{X_n}} - \frac{\sigma}{\mu} \right| \le  z_{0.975} \right) \]
+\[ = 0.95 \]
+\section*{Problem 7}
+Fix $\epsilon > 0$. We wish to show that for $c_n$, as $n\to\infty$, $P(|\bar{X}_n| \ge \epsilon) \to 0$. Rewriting $\bar{X}_n$ as suggested, we get
+\[ P(|\bar{X}_n| \ge \epsilon) = P\left(\left|n^{-1} \sum X_i \{ |X_i| \le c_n \}\right| + \left|n^{-1} \sum X_i \{ |X_i| > c_n \} \right| \ge \epsilon\right) \]
+\[ \le P\left(\left|n^{-1} \sum X_i \{ |X_i| \le c_n \}\right|\ge \epsilon\right) + P\left(\left|n^{-1} \sum X_i \{ |X_i| > c_n \} \right| \ge \epsilon\right) \]
+\[ = P\left(\left| \sum X_i \{ |X_i| \le c_n \}\right| \ge n\epsilon\right) + P\left(\left|n^{-1} \sum X_i \{ |X_i| > c_n \} \right| \ge \epsilon\right) \]
+\[ \le \frac{c_n^2}{(n\epsilon)^2} + P\left(\left|n^{-1} \sum X_i \{ |X_i| > c_n \} \right| \ge \epsilon\right) \]
+where we applied Chebyshev to the left term, and noticed that $X_i\{X_i \le c_n \}$ is at most $c_n$. We can apply Markov to the right term to get
+\[ \le \frac{c_n^2}{(n\epsilon)^2} + \frac{E\left[ \left| \sum X_i \{ |X_i| > c_n \}\right|\right]}{n\epsilon} \]
+\[ = \le \frac{c_n^2}{(n\epsilon)^2} + \frac{E\left[ \left| X_i \{ |X_i| > c_n \}\right|\right]}{\epsilon} \]
+Note that this is dominated by $|x|$, and so by the DCT, $E\left[ \left| X_i \{ |X_i| > c_n \}\right|\right] \le E|X|$, and as $c_n \to \infty$, $\{ |X_i| > c_n \} \to 0$, so we have that as $n \to \infty$, the right term approaches 0. Take $c_n = n^{1/3}$. Then the left term also disappears as $n \to \infty$, so as $n \to \infty, P(|\bar{X}_n| \ge \epsilon) \to 0$ for fixed $\epsilon$, and hence we are done.
+\section*{Problem 8}
+\begin{enumerate}[label=(\alph*)]
+\item By the CLT, $\sqrt{n} (\bar{X}_n - \mu) \to_d N(0, \sigma^2)$. Then by the delta method, taking $g(x) = 1/x$, we have $g'(\mu) = -\frac{1}{\mu^2}$, so
+\[ \sqrt{n} (1/\bar{X}_n - 1/\mu) \to_d N(0, \sigma^2/\mu^4) \]
+\item By the CLT, $\sqrt{n} \bar{X}_n \to_d N(0, \sigma^2)$. Applying the CMT,
+\[ n^{-1/2}(1/\bar{X}_n) \to_d 1/N(0,\sigma^2) \]
+Note in this case $b_n$ is 0.
+\end{enumerate}
+\section*{Problem 9}
+\begin{enumerate}[label=(\alph*)]
+\item We have
+\[ \frac{\partial \log f}{\partial \theta} = \frac{x}{\theta} - \frac{1-x}{1-\theta} \]
+\[ \frac{\partial^2 \log f}{\partial \theta^2} = -\frac{x}{\theta^2} - \frac{1-x}{(1-\theta)^2} \]
+\[ E\left[\frac{\partial^2 \log f}{\partial \theta^2} \right] = -\frac{\theta}{\theta^2} - \frac{1-\theta}{(1-\theta)^2} = -\frac{1}{\theta} - \frac{1}{1-\theta} \]
+
+\[ I(\theta) = \frac{1}{\theta} + \frac{1}{1-\theta} \]
+\[ I(\theta)^{-1} = \frac{1}{\frac{1}{\theta} + \frac{1}{1-\theta}} = \theta(1-\theta) \]
+By Slutsky's theorem, since $\bar{X}_n \to_p \theta$ from WLLN, $\bar{X}_n(1-\bar{X}_n) \to_p \theta(1-\theta)$. By Slutsky, $\sqrt{\bar{X}_n(1-\bar{X}_n)} \to_p \sqrt{\theta(1-\theta)}$.
+\item We have
+\[ \frac{\partial \log f}{\partial \mu} = \frac{x-\mu}{\sigma^2} \]
+\[ \frac{\partial \log f}{\partial \sigma^2} = -\frac{1}{2\sigma^2} + \frac{(x-\mu)^2}{2\sigma^4} \]
+\[ \frac{\partial^2 \log f}{\partial \mu^2} = -\frac{1}{\sigma^2} \]
+\[ \frac{\partial^2 \log f}{\partial \mu \partial \sigma^2} = -\frac{x-\mu}{\sigma^4} \]
+\[ \frac{\partial^2 \log f}{(\partial \sigma^2)^2} = \frac{1}{2\sigma^4} - \frac{(x-\mu)^2}{\sigma^6} \]
+
+\[ E\left[\frac{\partial^2 \log f}{\partial \mu^2}\right] = -\frac{1}{\sigma^2} \]
+\[ E\left[\frac{\partial^2 \log f}{\partial \mu \partial \sigma^2}\right] = 0 \]
+\[ E\left[\frac{\partial^2 \log f}{(\partial \sigma^2)^2}\right] = \frac{1}{2\sigma^4} - \frac{\sigma^2}{\sigma^6} = - \frac{1}{2\sigma^4} \]
+The information matrix is then
+\[ I(\theta) = \begin{bmatrix}\frac{1}{\sigma^2} & 0 \\ 0 & \frac{1}{2\sigma^4} \\  \end{bmatrix} \]
+$I$ is nicely diagonal, so its inverse is
+\[ I(\theta)^{-1} = \begin{bmatrix} \sigma^2 & 0 \\ 0 & 2\sigma^4 \\  \end{bmatrix} \]
+Now, $\hat{S}^2_X$ is a consistent estimator of $\sigma^2$ as we have shown in class, so
+\[ \begin{bmatrix} \hat{S}^2_X & 0 \\ 0 & 2\hat{S}^4_X \\  \end{bmatrix} \to_p I(\theta)^{-1} \] by Slutsky's theorem. Finally, $\sqrt{\hat{S}^2_X}$ is a consistent estimator of the error of $\sqrt{n}(\bar{X}_n - \mu)$ and $\sqrt{2} \hat{S}^2_X$ is a consistent estimator of the error of $\sqrt{n}(\hat{S}^2_X - \sigma^2)$.
+\end{enumerate}
+\section*{Problem 10}
+\begin{enumerate}[label=(\alph*)]
+\item $f$ is a probability density, so
+\[ 1 = \int f(y, \theta) d\mu  \]
+Then by assumption iii, we have
+\[ 0 = \frac{\partial}{\partial \theta}\int f(y, \theta) d\mu  = \int \frac{\partial}{\partial \theta } f(y, \theta) d\mu  \]
+Then we have
+\[ E_\theta \frac{\partial}{\partial \theta}\log f = \int \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) f(y, \theta) d\mu \]
+\[ = \int \left(\frac{\partial}{\partial \theta} f(y, \theta) \right) d\mu \]
+\[ = 0 \]
+\item From the previous part, we have $f$ is a probability density, so
+\[ 1 = \int f(y, \theta) d\mu  \]
+Then by assumption iv, we have
+\[ 0 = \frac{\partial^2}{\partial \theta\partial \theta'}\int f(y, \theta) d\mu  = \int \frac{\partial^2}{\partial \theta \partial \theta'} f(y, \theta) d\mu  \]
+
+Since we have
+\[ \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) f(y, \theta) = \frac{\partial}{\partial \theta} f(y, \theta)\]
+we can differentiate both sides to get
+
+\[ \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right) f(y, \theta) + \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \frac{\partial}{\partial \theta'} f(y, \theta) = \frac{\partial^2}{\partial \theta \partial \theta'} f(y, \theta)\]
+Integrating, we get
+
+\[ \int \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right) f(y, \theta) + \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \frac{\partial}{\partial \theta} f(y, \theta) = \int \frac{\partial^2}{\partial \theta \partial \theta'} f(y, \theta) = 0\]
+\[ \int \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right) f(y, \theta) + \int \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \frac{\partial}{\partial \theta'} f(y, \theta) = 0 \]
+\[ E_\theta \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right)  + \int \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \left(\frac{\partial}{\partial \theta'} \log f(y, \theta)\right) f(y, \theta) = 0 \]
+\[ E_\theta \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right)  + E_\theta \left[ \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \left(\frac{\partial}{\partial \theta'} \log f(y, \theta)\right) \right] = 0 \]
+\[ -E_\theta \left(\frac{\partial^2}{\partial \theta \partial \theta'}\log f(y, \theta) \right)  = E_\theta \left[ \left(\frac{\partial}{\partial \theta}\log f(y, \theta) \right) \left(\frac{\partial}{\partial \theta'} \log f(y, \theta)\right) \right]  \]
+
+\end{enumerate}
+\section*{Problem 11}
+\begin{enumerate}[label=(\alph*)]
+\item Taking the log-likelihood, we get
+\[ \mathcal{L} = n \log 2 + \sum_i \log X_i - 2\log \theta - \infty(\theta < \max X_i) \]
+Since $X_i$ cannot be more than $\theta$, we have to constrain the log-likelihood to $\theta \ge \max X_i$. Since the remainder of this expression is strictly decreasing in $\theta$, the MLE is then the smallest allowable $\theta$, so
+\[ \hat{\theta} = \max X_i \]
+
+\item The CDF of $\hat{\theta}$ is given by $F_{\hat{\theta}}(t) = F_{X_i}(t)^n = (t/\theta)^{2n}$. So $f_{\hat{\theta}}(t) = \frac{2n}{\theta}(t/\theta)^{2n-1}$.
+Then $E[\hat{\theta}]$ is
+\[ \int_0^\theta 2n (t/\theta)^{2n} = \frac{2n\theta}{2n+1} \]
+So the desired constant is
+\[ \frac{2n+1}{2n} \]
+\end{enumerate}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
