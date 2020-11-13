@@ -1,0 +1,92 @@
+%Jennifer Pan, August 2011
+
+\documentclass[10pt,letter]{article}
+	% basic article document class
+	% use percent signs to make comments to yourself -- they will not show up.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{enumitem}
+	% packages that allow mathematical formatting
+
+\usepackage{graphicx}
+	% package that allows you to include graphics
+
+\usepackage{setspace}
+	% package that allows you to change spacing
+
+\onehalfspacing
+	% text become 1.5 spaced
+
+\usepackage{fullpage}
+	% package that specifies normal margins
+
+
+\begin{document}
+	% line of code telling latex that your document is beginning
+
+
+\title{ECON550: Problem Set 10}
+
+\author{Nicholas Wu}
+
+\date{Fall 2020}
+	% Note: when you omit this command, the current dateis automatically included
+
+\maketitle
+\section*{Problem 1}
+In order to use the mean-value expansion, we need $\tilde{\theta}_n$ in a neighborhood $B(\theta_0, \epsilon)$ of $\theta_0$. Let
+\[ \bar{m} = n^{-1}\sum_{i=1}^n m(W_i, \tilde{\theta}_n) \]
+\[ Em = Em(W_i, \theta_0) \]
+Then $P(|\bar{m} - Em| > k) \le P((|\bar{m} - Em > k)\cap(\tilde{\theta_n} \in B(\theta_0, \epsilon))) + P(\tilde{\theta_n} \in B(\theta_0, \epsilon))$
+We know the second probability term goes to $0$ since $\tilde{\theta}_n \to \theta_0$. So we just need to show the first term also goes to 0. Specifically, it suffices to show that for $\tilde{\theta}_n \in B(\theta_0, \epsilon)$, $\bar{m} \to_p Em$.
+
+Since $\tilde{\theta}_n \in B(\theta_0, \epsilon)$, take the mean-value expansion:
+\[ n^{-1}\sum_{i=1}^n m(W_i, \tilde{\theta}_n) = n^{-1}\sum_{i=1}^n m(W_i, \theta_0) + n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0)  \]
+where $\theta'_n$ is between $\theta_0$ and $\tilde{\theta}_n$. By the WLLN, the first term converges to $Em$, and so we just need to show the second term converges to 0 in probability. By Cauchy-Schwarz,
+\[ 0 \le \left|n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \right| \le  n^{-1}\sum_{i=1}^n \left|\left|\frac{\partial m(W_i, \theta'_n)}{\partial \theta'}\right|\right| ||(\tilde{\theta}_n - \theta_0) ||  \]
+\[ \le n^{-1}\sum_{i=1}^n \left(\sup_{\theta \in B(\theta_0, \epsilon)} \left|\left|\frac{\partial m(W_i, \theta)}{\partial \theta}\right|\right| \right)||(\tilde{\theta}_n - \theta_0) || \]
+Now, by the WLLN,
+\[ n^{-1}\sum_{i=1}^n \left(\sup_{\theta \in B(\theta_0, \epsilon)} \left|\left|\frac{\partial m(W_i, \theta)}{\partial \theta}\right|\right| \right) \to_p E\left(\sup_{\theta \in B(\theta_0, \epsilon)} \left|\left|\frac{\partial m(W_i, \theta)}{\partial \theta}\right|\right| \right) < \infty \]
+Since $||(\tilde{\theta}_n - \theta_0) || \to_p 0$ as $\tilde{\theta}_n \to_p \theta_0$, we have that
+\[ n^{-1}\sum_{i=1}^n \left(\sup_{\theta \in B(\theta_0, \epsilon)} \left|\left|\frac{\partial m(W_i, \theta)}{\partial \theta}\right|\right| \right)||(\tilde{\theta}_n - \theta_0) || \to_p 0 \]
+But since
+\[ 0 \le \left|n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \right| \le  n^{-1}\sum_{i=1}^n \left|\left|\frac{\partial m(W_i, \theta'_n)}{\partial \theta'}\right|\right| ||(\tilde{\theta}_n - \theta_0) ||  \]
+we also get that
+\[\left|n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \right| \to_p 0 \]
+and hence
+\[ n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \to_p 0 \]
+So all together
+
+\[ n^{-1}\sum_{i=1}^n m(W_i, \tilde{\theta}_n) = n^{-1}\sum_{i=1}^n m(W_i, \theta_0) + n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \to_p Em(W_i, \theta_0) + 0 = Em(W_i, \theta_0) \]
+and we are done.
+\section*{Problem 2}
+\section*{Problem 3}
+\section*{Problem 4}
+We can apply the delta method.
+\[ g'(\rho) = \frac{1}{2(1+\rho)} + \frac{1}{2(1-\rho)} \]
+\[ = \frac{1-\rho + 1+\rho}{2(1-\rho^2)} \]
+\[ = \frac{1}{1-\rho^2} \]
+Since $\sqrt{n} (\hat{\rho}_n - \rho) \to N(0, (1-\rho^2)^2)$, by the delta method, we have
+\[\sqrt{n} (g(\hat{\rho}_n) - g(\rho)) \to N(0, g'(\rho)^2(1-\rho^2)^2) = N(0,1)  \]
+\section*{Problem 5}
+Suppose, for sake of contradiction, $\exists \epsilon > 0$ such that
+\[ \inf_{\theta \not \in B(\theta_0, \epsilon)}Q(\theta) \le Q(\theta_0) \]
+This implies that $\exists$ a sequence of $\theta_n$'s such that $Q(\theta_n) \to Q^* \le Q(\theta_0)$. Since $\Theta$ is compact, by Heine-Borel it is bounded, and hence by Bolzano-Weierstrass we can pick a convergent subsequence, $\theta'_n \to \theta^* \neq \theta_0$ (since the sequence is not contained in $B(\theta_0, \epsilon)$). By continuity of $Q$, $Q(\theta'_n)$ also converges, and since $\theta'_n$ is a subsequence of $\theta_n$ and $Q(\theta_n) \to Q^*$, $Q(\theta'_n) \to Q^*$. Now, since $\Theta$ is compact, by Heine-Borel it is also closed, so $\theta^* \in \Theta$, and $Q(\theta^*) = Q^* \le Q(\theta_0)$. But this contradicts our assumption that $\theta_0$ uniquely minimizes $Q$ on $\Theta$, and hence we are done.
+\section*{Problem 6}
+\begin{enumerate}[label=(\alph*)]
+\item The log-likelihood is (dropping constant terms without $\theta$)
+\[ - \sum \frac{(X_i - \theta)^2}{2\sigma^2} \]
+Taking the FOC on $\theta$:
+\[ 0 = \frac{1}{\sigma^2} \left( \sum (X_i - \theta) \right) \]
+Now, if $\bar{X_n} \ge 0$, we can just take $\hat{\theta}_n = \bar{X_n}$, and this will satisfy the FOC and maximize log-likelihood. If $\bar{X_n} < 0$, we note that the log-likelihood, while maximized at $\hat{\theta}_n = \bar{X_n}$, is decreasing in $\hat{\theta}_n$ on the range $[0, \infty)$. Hence, if $\bar{X}_n < 0$, the value of $\hat{\theta}_n$ in the allowable range that maximizes the log-likelihood is 0. Hence, the MLE is $\hat{\theta}_n= \max (0, \bar{X}_n)$.
+\item We have that due to normality,
+\[ P(X \le c) = P\left( \frac{X - \mu}{\sigma} \le \frac{c-\mu}{\sigma}\right) = \Phi\left( \frac{c-\mu}{\sigma}\right) \]
+Since functions of $\hat{\theta}$ being an MLE for $\theta$ implies $g(\hat{\theta})$ is an MLE for $g(\theta)$, we get that if we take the MLEs for $\mu, \sigma$ as $\hat{\mu}, \hat{\sigma}$, then
+\[ \Phi\left(\frac{c - \hat{\mu}}{\hat{\sigma}}\right) \]
+is an MLE for
+\[  \Phi\left( \frac{c-\mu}{\sigma}\right) = P(X \le c)  \]
+\end{enumerate}
+\end{document}
+	% line of code telling latex that your document is ending. If you leave this out, you'll get an error
