@@ -62,7 +62,39 @@ So all together
 \[ n^{-1}\sum_{i=1}^n m(W_i, \tilde{\theta}_n) = n^{-1}\sum_{i=1}^n m(W_i, \theta_0) + n^{-1}\sum_{i=1}^n \frac{\partial m(W_i, \theta'_n)}{\partial \theta'}( \tilde{\theta}_n - \theta_0) \to_p Em(W_i, \theta_0) + 0 = Em(W_i, \theta_0) \]
 and we are done.
 \section*{Problem 2}
+The FOCs for maximization definition of $\hat{\theta}_n$, we get
+\[ 0 = \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left(n^{-1}\sum g(W_i, \hat{\theta}_n) \right)\]
+Using the mean-value expansion on the rightmost parenthesized expression, we get
+
+\[ 0 = \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left(n^{-1}\sum g(W_i, \theta_0) + n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} (\hat{\theta}_n - \theta_0)  \right) \]
+where $\theta'_{n}$ is between $\theta_0$ and $\hat{\theta}_n$
+
+\[\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} (\hat{\theta}_n - \theta_0)  \right) = -\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n\left( n^{-1}\sum g(W_i, \theta_0) \right) \]
+\[\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)\sqrt{n} (\hat{\theta}_n - \theta_0)  = -\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n\sqrt{n}\left( n^{-1}\sum g(W_i, \theta_0) \right) \]
+\[\sqrt{n} (\hat{\theta}_n - \theta_0)  = - \left( \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)\right)^{-1}\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n\left( n^{-1/2}\sum g(W_i, \theta_0) \right) \]
+By the multivariate CLT:
+\[ \left( n^{-1/2}\sum g(W_i, \theta_0) \right) \to_p N(0, E[g(W_i, \theta_0)g(W_i, \theta_0)']) \]
+Since $\hat{\theta}_n \to \theta_0$, $\theta'_n \to \theta_0$, applying Problem 1 element-wise, we get,
+\[ \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' \to_p \Gamma_0' \]
+\[\left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)  \to_p \Gamma_0 \]
+Since $B_n \to B$, by Slutsky's,
+
+\[\left( \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)\right)^{-1} \to_p (\Gamma_0'B\Gamma_0)^{-1} \]
+
+Then we get all together
+\[\sqrt{n} (\hat{\theta}_n - \theta_0) \]
+\[ = - \left( \left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)\right)^{-1}\left(n^{-1} \sum \frac{\partial g(W_i, \hat{\theta}_n)}{\partial \theta} \right)' B_n\left( n^{-1/2}\sum g(W_i, \theta_0) \right) \]
+\[ \to_p (\Gamma_0'B\Gamma_0)^{-1} \Gamma_0 B N(0, E[g(W_i, \theta_0)g(W_i, \theta_0)']) \]
+\[ = N(0, (\Gamma_0'B\Gamma_0)^{-1} \Gamma_0 B E[g(W_i, \theta_0)g(W_i, \theta_0)']B' \Gamma_0' (\Gamma_0'B\Gamma_0)^{-1})\]
 \section*{Problem 3}
+We know from the previous problem that since $\hat{\theta}_n \to_p \theta_0$,
+\[ \hat{\Gamma}_n = \left( n^{-1} \sum \frac{\partial g(W_i, \theta'_{n})}{\partial \theta} \right)  \to_p \Gamma_0 \]
+So we just need to find an estimator for $E[g(W_i, \theta_0)g(W_i, \theta_0)']$. Consider
+\[ \hat{E}_n = n^{-1} \sum g(W_i, \hat{\theta}_n)g(W_i, \hat{\theta}_n)' \]
+Then as long as $E\sup||\partial g(W_i, \hat{\theta}_n)g(W_i, \hat{\theta}_n)/\partial \theta|| < \infty$, we can apply problem 1, and we get
+\[ \hat{E}_n \to_p E[g(W_i, \theta_0)g(W_i, \theta_0)'] \]
+So applying Slutsky's and the rules of convergence in probability, we have
+\[ (\hat{\Gamma}_n'B_n\hat{\Gamma}_n)^{-1} \hat{\Gamma}_n B_n \hat{E}_n B_n' \hat{\Gamma}_n' (\hat{\Gamma}_n'B_n\hat{\Gamma}_n)^{-1} \to_p (\Gamma_0'B\Gamma_0)^{-1} \Gamma_0 B E[g(W_i, \theta_0)g(W_i, \theta_0)']B' \Gamma_0' (\Gamma_0'B\Gamma_0)^{-1}\] 
 \section*{Problem 4}
 We can apply the delta method.
 \[ g'(\rho) = \frac{1}{2(1+\rho)} + \frac{1}{2(1-\rho)} \]
